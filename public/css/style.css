@@ -57,8 +57,8 @@ a:hover {
 
 .entry-title,
 .entry-title a:hover {
-  color: rgba(0, 0, 0, .84) !important;
-  fill: rgba(0, 0, 0, .84) !important;
+  color: rgba(0, 0, 0, .8) !important;
+  fill: rgba(0, 0, 0, .8) !important;
 }
 
 .entry-title {
@@ -99,8 +99,8 @@ h5.entry-title {
 }
 
 .entry-excerpt {
-  color: rgba(0, 0, 0, .54) !important;
-  fill: rgba(0, 0, 0, .54) !important;
+  color: rgba(0, 0, 0, 0.8) !important;
+  fill: rgba(0, 0, 0, 0.8) !important;
   font-size: 0.9em;
   letter-spacing: 0.5px
 }
@@ -202,7 +202,7 @@ img {
   position: relative;
   border-bottom: 1px solid rgba(0, 0, 0, .15);
   margin-top: 1.5rem;
-  margin-bottom: 2.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .divider-2 {
@@ -368,7 +368,7 @@ body {
   color: rgba(0, 0, 0, .84);
 }
 
-body,
+/* body,
 .entry-meta,
 .heading-font {
   font-family: 'Cabin', sans-serif;
@@ -378,7 +378,7 @@ body,
 .capsSubtle,
 .mobi-menu nav {
   font-family: 'Cabin', sans-serif;
-}
+} */
 
 .entry-header,
 .entry-wraper .excerpt,

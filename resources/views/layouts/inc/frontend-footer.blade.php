@@ -2,14 +2,16 @@
                 <div class="container">
                     <div class="divider"></div>
                     <div class="row">
-                        <div class="col-md-6 copyright text-xs-center">
-                            <p>Copyright 2022 Merinda inc. Designed by <a href="#">AliThemes.com</a></p>
+                        <div class="col-md-4 copyright text-xs-center">
+                            <p>Copyright <script>document.write(new Date().getFullYear())</script> Talewix</p>
                         </div>
-                        <div class="col-md-6">
-                            <ul class="social-network inline text-md-right text-sm-center">
-                                <li class="list-inline-item"><a href="#"><i class="icon-facebook"></i></a></li>
-                                <li class="list-inline-item"><a href="#"><i class="icon-twitter"></i></a></li>
-                                <li class="list-inline-item"><a href="#"><i class="icon-behance"></i></a></li>
+                        <div class="col-md-8">
+                            <ul class="inline copyright text-md-right text-sm-center">
+                                <li class="list-inline-item"><a href="#">Help</a></li>
+                                <li class="list-inline-item"><a href="#">About</a></li>
+                                <li class="list-inline-item"><a href="#">Contact</a></li>
+                                <li class="list-inline-item"><a href="#">Privacy</a></li>
+                                <li class="list-inline-item"><a href="#">Terms</a></li>
                             </ul>
                         </div>
                     </div>

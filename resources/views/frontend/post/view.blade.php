@@ -12,13 +12,15 @@
                             {{ $post->name }}
                             </h1>
                             <div class="entry-meta align-items-center">
-                                <a class="author-avatar" href="#"><img src="assets/images/author-avata-2.jpg" alt=""></a>
-                                <a href="#">{{ $post->user->name}}</a><br>
+                                <a class="author-avatar" href="#">
+                                    <img src="{{ asset($post->user->pro_img ? 'upload/user_img/' . $post->user->pro_img : 'images/user-avatar.svg') }}" alt="Author Avatar">
+                                </a>
+                                <a href="#">{{ $post->user->name }}</a><br>
                                 <span>{{ $post->created_at->format('M j, Y') }}</span>
                                 <span class="middotDivider"></span>
                                 {{-- <span class="readingTime" title="{{ $postitem->reading_time }}">{{ $postitem->reading_time }}</span> --}}
-                                
                             </div>
+                            
                         </div>
                     </div> <!--end single header-->
                     <figure class="image zoom mb-5 text-center">

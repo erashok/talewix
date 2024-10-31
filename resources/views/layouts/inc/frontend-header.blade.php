@@ -1,7 +1,7 @@
  <header id="header" class="d-lg-block d-none">
                 <div class="container">
                     <div class="align-items-center w-100">
-                        <h1 class="logo float-left navbar-brand"><a href="{{ url('/') }}" class="logo">Estoriia</a></h1>
+                        <h1 class="logo float-left navbar-brand"><a href="{{ url('/') }}" class="logo">Talewix</a></h1>
                         <div class="header-right float-right w-50">
                             <div class="d-inline-flex float-right text-right align-items-center">
                                
@@ -13,9 +13,13 @@
                                     </li>
                                 </ul>
                               <div class="dropdown pro-icon">
+                                @php
+                                    $user = Auth::user();
+                                @endphp
+
                                 <a class="author-avatar dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown">
-                                    <img src="{{ asset('images/author-avata-1.jpg') }}" alt="Profile">
-                                </a>
+                                    <img src="{{ asset($user && $user->pro_img ? 'upload/user_img/' . $user->pro_img : 'images/user-avatar.svg') }}" alt="Profile">
+                                </a>                               
                                 <div class="dropdown-menu" aria-labelledby="profileDropdown">
                                     @if (Auth::check())
                                         <!-- Shown when the user is logged in -->
