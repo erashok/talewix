@@ -163,16 +163,6 @@ class FrontendController extends Controller
         
         return view('frontend.post.profile', compact('posts', 'user'));
         }
-    // public function showProfile($id)
-    //     {
-    //         $user = User::findOrFail($id);
-    //         if (Auth::check() && Auth::id() === $user->id) {
-    //             return view('profile', compact('user'));
-    //         } else {
-    //             return view('public-profile', compact('user'));
-    //         }
-    //     }
-        
     public function search(Request $request)
     {
         $request->validate([

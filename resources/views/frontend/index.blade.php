@@ -31,10 +31,10 @@
                                                                 </p>
                                                             </div>
                                                             <div class="entry-meta align-items-center">
-                                                                <a href="#">{{ $latest_post_item->user->name}}</a> in <a href="#">Fashion</a><br>
+                                                                <a href="{{url('profile/'.$latest_post_item->user->id )}}">{{ $latest_post_item->user->name}}</a> in <a href="#">Fashion</a><br>
                                                                 <span>{{ $latest_post_item->created_at->format('M j, Y') }}</span>
                                                                 <span class="middotDivider"></span>
-                                                                <span class="readingTime" title="3 min read">4 min read</span>
+                                                                <span class="readingTime" title="{{ $post->estimated_reading_time ?? '0' }} min read">{{ $post->estimated_reading_time ?? '0' }} min read</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -97,12 +97,12 @@
                                            @foreach ($posts as $latest_post_item)
                                                  <li class="d-flex">
                                                     <div class="post-content">
-                                                        <h5 class="entry-title mb-3"><a href="{{ url($latest_post_item->category->slug.'/'.$latest_post_item->slug) }}">{{$latest_post_item->name}}</a></h5>
+                                                        <h5 class="entry-title mb-2"><a href="{{ url($latest_post_item->category->slug.'/'.$latest_post_item->slug) }}">{{$latest_post_item->name}}</a></h5>
                                                         <div class="entry-meta align-items-center">
-                                                            <a href="#">{{ $latest_post_item->user->name}}</a> in <a href="#">Police</a><br>
-                                                            <span>May 14</span>
+                                                            <a href="#">{{ $latest_post_item->user->name}}</a> in <a href="{{ url(Str::slug($latest_post_item->category->name))}}"> {{ $latest_post_item->category->name }}</a><br>
+                                                            <span>{{ $latest_post_item->created_at->format('M j, Y') }}</span>
                                                             <span class="middotDivider"></span>
-                                                            <span class="readingTime" title="3 min read">3 min read</span>
+                                                            <span class="readingTime" title="{{ $post->estimated_reading_time ?? '0' }} min read">{{ $post->estimated_reading_time ?? '0' }} min read</span>
                                                         </div>
                                                     </div>
                                                 </li>
