@@ -50,6 +50,7 @@ Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index
 Route::get('new-story', [App\Http\Controllers\Frontend\FrontendController::class, 'newstory']);
 Route::get('search', [App\Http\Controllers\Frontend\FrontendController::class, 'search']);
 Route::get('profile', [App\Http\Controllers\Frontend\FrontendController::class, 'userprofile']);
+Route::get('/profile/{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'showProfile'])->name('profile.show');
 Route::get('plans', [App\Http\Controllers\Frontend\FrontendController::class, 'plans']);
 Route::get('{category_slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'viewcategoryPost']);
 Route::get('{category_slug}/{post_slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'viewpost']);

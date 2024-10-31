@@ -153,7 +153,26 @@ class FrontendController extends Controller
             ->route('login')
             ->with('error', 'Please log in to view your profile.');
     }
-
+    public function showProfile($id)
+        {
+            $user = User::findOrFail($id);
+            $posts = Post::where('status', '1')
+                         ->where('created_by', $id)
+                         ->orderBy('created_at', 'desc')
+                         ->get();
+        
+        return view('frontend.post.profile', compact('posts', 'user'));
+        }
+    // public function showProfile($id)
+    //     {
+    //         $user = User::findOrFail($id);
+    //         if (Auth::check() && Auth::id() === $user->id) {
+    //             return view('profile', compact('user'));
+    //         } else {
+    //             return view('public-profile', compact('user'));
+    //         }
+    //     }
+        
     public function search(Request $request)
     {
         $request->validate([
