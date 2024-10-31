@@ -47,8 +47,8 @@ button.owl-next:hover i,
 .copyright a,
 .entry-main-content a
  {
-  color: #03a87c !important;
-  fill: #03a87c !important;
+  color: rgba(0, 0, 0, .84);
+  fill: rgba(0, 0, 0, .84) !important;
 }
 
 /*Background*/

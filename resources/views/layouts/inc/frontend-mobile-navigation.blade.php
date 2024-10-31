@@ -1,7 +1,7 @@
 <div class="sticky-header fixed d-lg-none d-md-block">
             <div class="text-right">
                 <div class="container mobile-menu-fixed pr-5">
-                    <h1 class="logo-small navbar-brand"><a href="{{ url('/') }}" class="logo">Merinda</a></h1>
+                    <h1 class="logo-small navbar-brand"><a href="{{ url('/') }}" class="logo">Talewix</a></h1>
 
                     <a class="author-avatar" href="#"><img src="assets/images/author-avata-1.jpg" alt=""></a>
 
@@ -13,10 +13,13 @@
 
             <div class="mobi-menu">
                 <div class="mobi-menu__logo">
-                    <h1 class="logo navbar-brand"><a href="{{ url('/') }}" class="logo">Merinda</a></h1>
+                    <h1 class="logo navbar-brand"><a href="{{ url('/') }}" class="logo">Talewix</a></h1>
                 </div>
-                <form action="#" method="get" class="menu-search-form d-lg-flex">
-                    <input type="text" class="search_field" placeholder="Search..." value="" name="s">
+                <form action="{{ url('search') }}" method="GET" class="menu-search-form d-lg-flex">
+                    <a href="javascript:void(0)" class="searh-toggle">
+                        <i class="icon-search"></i>
+                    </a>
+                    <input class="search_field" type="text" name="query" placeholder="Search..." required>
                 </form>
                 <nav>
                     <ul>

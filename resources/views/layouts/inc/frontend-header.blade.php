@@ -1,7 +1,7 @@
  <header id="header" class="d-lg-block d-none">
                 <div class="container">
                     <div class="align-items-center w-100">
-                        <h1 class="logo float-left navbar-brand"><a href="{{ url('/') }}" class="logo">Estoriia</a></h1>
+                        <h1 class="logo float-left navbar-brand"><a href="{{ url('/') }}" class="logo">Talewix</a></h1>
                         <div class="header-right float-right w-50">
                             <div class="d-inline-flex float-right text-right align-items-center">
                                
@@ -13,20 +13,24 @@
                                     </li>
                                 </ul>
                               <div class="dropdown pro-icon">
+                                @php
+                                    $user = Auth::user();
+                                @endphp
+
                                 <a class="author-avatar dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown">
-                                    <img src="{{ asset('images/author-avata-1.jpg') }}" alt="Profile">
-                                </a>
+                                    <img src="{{ asset($user && $user->pro_img ? 'upload/user_img/' . $user->pro_img : 'images/user-avatar.svg') }}" alt="Profile">
+                                </a>                               
                                 <div class="dropdown-menu" aria-labelledby="profileDropdown">
                                     @if (Auth::check())
                                         <!-- Shown when the user is logged in -->
                                         <a class="dropdown-item cursor-not-allowed">{{ Auth::user()->email }}</a>
                                         <a class="dropdown-item" href="{{ url('/profile') }}">My Profile</a>
-                                        <a class="dropdown-item" href="{{ url('/plans') }}">Become a Medium Member</a>
+                                        {{-- <a class="dropdown-item" href="{{ url('/plans') }}">Become a Talewix Member</a> --}}
                                         <a class="dropdown-item" href="{{ url('/getLogout') }}">Logout</a>
                                     @else
                                         <!-- Shown when the user is not logged in -->
                                         <div class="m-3">
-                                            <h5 class="mb-2">Get started on Medium</h5>
+                                            <h5 class="mb-2">Get started on Talewix</h5>
                                             <div class="btn-group justify-center">
                                                 <a href="{{ url('/login') }}" class="btn btn-outline-primary">Login</a>
                                                 <a href="{{ url('/register') }}" class="btn btn-outline-secondary">Register</a>

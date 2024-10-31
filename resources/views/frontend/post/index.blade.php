@@ -31,8 +31,8 @@
                                     <article class="row justify-content-between mb-5 mr-0">
                                         <div class="col-md-9 ">
                                             <div class="align-self-center">
-                                                <div class="capsSubtle mb-2">{{ $category->name }}</div>
-                                                <h3 class="entry-title mb-3">
+                                                <div class="capsSubtle">{{ $category->name }}</div>
+                                                <h3 class="entry-title mb-2">
                                                         <a href="{{ url('/'.$category->slug.'/'.$postitem->slug) }}">
                                                             {{ $postitem->name }}
                                                         </a>
@@ -45,15 +45,16 @@
                                                 </p>
                                                 </div>
                                                 <div class="entry-meta align-items-center">
-                                                    <a href="{{url('profile')}}">{{ $postitem->user->name}}</a><br>
+                                                    @if(Auth::check())
+                                                    <a href="{{ route('profile.show', $postitem->user->id) }}">{{ $postitem->user->name }}</a>
+                                                    @else
+                                                        <a href="{{ route('login') }}">Login to view profile</a>
+                                                    @endif                                                
+                                                        <br>
                                                     <span>{{ $postitem->created_at->format('M j, Y') }}</span>
                                                     <span class="middotDivider"></span>
                                                     <span class="readingTime" title="{{ $postitem->reading_time }}">{{ $postitem->reading_time }}</span>
-                                                    <span class="svgIcon svgIcon--star">
-                                                        <svg class="svgIcon-use" width="15" height="15">
-                                                            <path d="M7.438 2.324c.034-.099.09-.099.123 0l1.2 3.53a.29.29 0 0 0 .26.19h3.884c.11 0 .127.049.038.111L9.8 8.327a.271.271 0 0 0-.099.291l1.2 3.53c.034.1-.011.131-.098.069l-3.142-2.18a.303.303 0 0 0-.32 0l-3.145 2.182c-.087.06-.132.03-.099-.068l1.2-3.53a.271.271 0 0 0-.098-.292L2.056 6.146c-.087-.06-.071-.112.038-.112h3.884a.29.29 0 0 0 .26-.19l1.2-3.52z"></path>
-                                                        </svg>
-                                                    </span>
+                                                    
                                                 </div>
                                             </div>
                                         </div>

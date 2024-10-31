@@ -13,7 +13,7 @@
                                 <div class="box box-author m_b_2rem">
                                     <div class="post-author row-flex">
                                         <div class="author-img">
-                                            <img alt="author avatar" src="{{ $user->pro_img ? url('upload/user_img/' . $user->pro_img) : url('images/author-avata-1.jpg') }}" class="avatar">
+                                            <img alt="author avatar" src="{{ $user->pro_img ? url('upload/user_img/' . $user->pro_img) : url('images/user-avatar.svg') }}" class="Prifle">
                                         </div>                                        
                                         <div class="author-content">
                                             <div class="top-author">
@@ -41,7 +41,7 @@
                                 </div>
                                 <h6 class="spanborder">
                                     <a href="{{ url('/profile') }}" class="mr-2"><span>Home</span></a>
-                                    <a href="{{ url('/storfy-member') }}" class="mr-2"><span>Storfy Member</span></a>
+                                    {{-- <a href="{{ url('/storfy-member') }}" class="mr-2"><span>Storfy Member</span></a> --}}
                                     <a href="{{ url('/about') }}" class="mr-2"><span>About</span></a>
                                 </h6>
                                 @if($posts->isEmpty())
@@ -55,12 +55,12 @@
                                         <div class="col-md-9">
                                             <div class="align-self-center">
                                                 <div class="capsSubtle mb-0">
-                                                    <img alt="author avatar" src="{{ $post->user->pro_img ? url('upload/user_img/' . $post->user->pro_img) : url('images/author-avata-1.jpg') }}" class="avatar" height="30" width="30">
+                                                    <img alt="author avatar" src="{{ $post->user->pro_img ? url('upload/user_img/' . $post->user->pro_img) : url('images/user-avatar.svg') }}" class="Prifle-post" height="30" width="30">
                                                     <a href="{{ url('profile') }}">{{ $post->user->name }}</a>
                                                     {{-- Uncomment if you want to display category name --}}
                                                     {{-- <a href="{{ url(Str::slug($post->category->name)) }}">{{ $post->category->name }}</a> --}}
                                                 </div>
-                                                <h3 class="entry-title">
+                                                <h3 class="entry-title mb-2">
                                                     <a href="javascript:void(0);" onclick="redirectToPost('{{ $post->user_name }}', '{{ $post->slug }}')">
                                                         {{ $post->name }}
                                                     </a>
@@ -89,22 +89,25 @@
                                         <span>Hightlight posts</span>
                                     </h5>
                                     <ol>
+                                        @php
+                                        $posts = App\Models\Post::where('ads_sidebar', '1')
+                                         ->where('status', '1')
+                                         ->take(6)
+                                         ->get();
+                                        @endphp
+                                        @foreach ($posts as $latest_post_item)
                                         <li class="d-flex">
                                             <div class="post-content">
-                                                <h5 class="entry-title mb-3"><a href="#">President and the emails. Who will guard the guards?</a></h5>
+                                                <h5 class="entry-title mb-2"><a href="{{ url($latest_post_item->category->slug.'/'.$latest_post_item->slug) }}">{{$latest_post_item->name}}</a></h5>
                                                 <div class="entry-meta align-items-center">
-                                                    <a href="#">Alentica</a> in <a href="#">Police</a><br>
-                                                    <span>May 14</span>
-                                                    <span class="middotDivider"></span>
-                                                    <span class="readingTime" title="3 min read">3 min read</span>
-                                                    <span class="svgIcon svgIcon--star">
-                                                        <svg class="svgIcon-use" width="15" height="15">
-                                                            <path d="M7.438 2.324c.034-.099.09-.099.123 0l1.2 3.53a.29.29 0 0 0 .26.19h3.884c.11 0 .127.049.038.111L9.8 8.327a.271.271 0 0 0-.099.291l1.2 3.53c.034.1-.011.131-.098.069l-3.142-2.18a.303.303 0 0 0-.32 0l-3.145 2.182c-.087.06-.132.03-.099-.068l1.2-3.53a.271.271 0 0 0-.098-.292L2.056 6.146c-.087-.06-.071-.112.038-.112h3.884a.29.29 0 0 0 .26-.19l1.2-3.52z"></path>
-                                                        </svg>
-                                                    </span>
+                                                    <a href="#">{{ $latest_post_item->user->name }}</a> in 
+                                                    <a href="{{ url(Str::slug($latest_post_item->category->name))}}">{{ $latest_post_item->category->name ?? 'Uncategorized' }}</a><br>
+                                                    <span>{{ $latest_post_item->created_at->format('M j, Y') }}</span>
                                                 </div>
                                             </div>
                                         </li>
+                                        @endforeach
+                                    </div>
                                     </ol>
                                 </div>
                             </div> <!--col-md-4-->
@@ -123,7 +126,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="profile-image-section">
-                                    <img id="profileImage" src="{{ asset('upload/user_img/' . ($user->pro_img ?? 'images/default-image.jpg')) }}" alt="Profile Picture" class="profile-image" />
+                                    <img id="profileImage" src="{{ asset('upload/user_img/' . ($user->pro_img ?? 'images/user-avatar.svg')) }}" alt="Profile Picture" class="profile-image" />
                                     <div class="image-buttons">
                                         <input type="file" id="imageInput" accept="image/*" style="display: none;" />
                                         <a href="#" class="update-btn" id="updateImageBtn">Update</a>
