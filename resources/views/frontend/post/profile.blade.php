@@ -55,7 +55,7 @@
                                         <div class="col-md-9">
                                             <div class="align-self-center">
                                                 <div class="capsSubtle mb-0">
-                                                    <img alt="author avatar" src="{{ $post->user->pro_img ? url('upload/user_img/' . $post->user->pro_img) : url('images/user-avatar.svg') }}" class="Prifle-post" height="30" width="30">
+                                                    <img alt="author avatar" src="{{ $post->user->pro_img ? url('upload/user_img/' . $post->user->pro_img) : url('images/user-avatar.svg') }}" class="Prifle-post" height="25" width="25">
                                                     <a href="{{ url('profile') }}">{{ $post->user->name }}</a>
                                                     {{-- Uncomment if you want to display category name --}}
                                                     {{-- <a href="{{ url(Str::slug($post->category->name)) }}">{{ $post->category->name }}</a> --}}
