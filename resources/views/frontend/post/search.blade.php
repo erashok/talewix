@@ -18,13 +18,13 @@
                                 <article class="row justify-content-between mb-5 mr-0">
                                     <div class="col-md-9">
                                         <div class="align-self-center">
-                                            <div class="capsSubtle mb-2">{{ $post->category->name }}</div>
-                                            <h3 class="entry-title mb-3">
+                                            <div class="capsSubtle mb-0">{{ $post->category->name }}</div>
+                                            <h3 class="entry-title mb-2">
                                                 <a href="{{ url('@' . Str::slug($post->user_name) . '/' . $post->slug) }}">
                                                     {{ $post->name }}
                                                 </a>
                                             </h3>
-                                            <div class="entry-excerpt">
+                                            <div class="entry-excerpt mb-2">
                                                 <p>
                                                     {{ \Illuminate\Support\Str::words($post->short_description, 30, '...') }}
                                                 </p>
@@ -51,17 +51,25 @@
                                         <span>Popular in Culture</span>
                                     </h5>
                                     <ol>
+                                        @php
+                                        $posts = App\Models\Post::where('right_sidebar', '1')
+                                         ->where('status', '1')
+                                         ->take(6)
+                                         ->get();
+                                        @endphp
+                                        @foreach ($posts as $latest_post_item)
                                         <li class="d-flex">
                                             <div class="post-content">
-                                                <h5 class="entry-title mb-3"><a href="#">President and the emails. Who will guard the guards?</a></h5>
+                                                <h5 class="entry-title mb-2"><a href="{{ url($latest_post_item->category->slug.'/'.$latest_post_item->slug) }}">{{$latest_post_item->name}}</a></h5>
                                                 <div class="entry-meta align-items-center">
-                                                    <a href="#">Alentica</a> in <a href="archive.html">Police</a><br>
-                                                    <span>May 14</span>
-                                                    <span class="middotDivider"></span>
-                                                    <span class="readingTime" title="3 min read">3 min read</span>
+                                                    <a href="#">{{ $latest_post_item->user->name }}</a> in 
+                                                    <a href="#">{{ $latest_post_item->category->name ?? 'Uncategorized' }}</a><br>
+                                                    <span>{{ $latest_post_item->created_at->format('M j, Y') }}</span>
                                                 </div>
                                             </div>
                                         </li>
+                                        @endforeach
+                                    </div>
                                     </ol>
                                 </div>
                             </div> <!--col-md-4-->

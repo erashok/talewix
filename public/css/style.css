@@ -391,7 +391,9 @@ body {
   max-width: 100%;
   padding-top: 2rem;
 }
-
+.Prifle-post{
+  border-radius: 100%;
+}
 /*Top Search*/
 .search-popup {
   display: none;

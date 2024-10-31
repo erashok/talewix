@@ -82,60 +82,49 @@ class FrontendController extends Controller
         return view('frontend.post.new-story', compact('categories'));
     }
 
-    public function addStory(Request $request)
-    {
-        $user = Auth::user();
-        if (!$user->plan) {
-            return redirect(url('plans'))->with('error', 'Please subscribe to a plan to add a story.');
-        }
-        dd($user);
-        $activePlan = $user->plan;
-        $postLimit = $activePlan->post_qty;
-        $currentPostCount = Post::where('user_id', $user->id)->count();
-        if ($currentPostCount >= $postLimit) {
-            return redirect()
-                ->back()
-                ->withErrors(['error' => 'You have reached your post limit for this plan. Upgrade your plan to add more stories.']);
-        }
-        $request->validate([
-            'category_id' => 'required|exists:categories,id',
-            'name' => 'required|string|max:255',
-            'short_description' => 'required|string',
-            'description' => 'required|string',
-            'tags' => 'nullable|string',
-            'thum_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-        $post = new Post();
-        $post->category_id = $request->category_id;
-        $post->name = $request->name;
-        $post->short_description = $request->short_description;
-        $post->description = $request->description;
-        $post->user_id = $user->id;
-        $post->user_name = $user->name;
-        $post->slug = Str::slug($request->name);
-        $tags = explode(',', $request->tags);
-        $tags = array_map('trim', $tags);
-        if (count($tags) > 5) {
-            return redirect()
-                ->back()
-                ->withErrors(['tags' => 'You can only add up to 5 tags.'])
-                ->withInput();
-        }
-        $post->tags = json_encode($tags);
-        if ($request->hasFile('thum_image')) {
-            $file = $request->file('thum_image');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('upload/post/'), $filename);
-            $post->thum_image = $filename;
-        } else {
-            $post->thum_image = 'default-image.jpg';
-        }
+    public function addstory(Request $request)
+{
+    
+    $request->validate([
+        'category_id' => 'required|exists:categories,id',
+        'name' => 'required|string|max:255',
+        'short_description' => 'required|string',
+        'description' => 'required|string',
+        'tags' => 'nullable|string',
+        'thum_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-        $post->created_by = $user->id;
-        $post->status = 1;
-        $post->save();
-        return redirect('/profile')->with('message', 'Post Added Successfully');
+    $post = new Post();
+    $post->category_id = $request->category_id; 
+    $post->name = $request->name;
+    $post->short_description = $request->short_description;
+    $post->description = $request->description;
+    $post->user_id = Auth::user()->id;
+    $post->user_name = Auth::user()->name;
+    $userName = Auth::user()->name;
+    $post->slug = Str::slug($request->name);
+    // Handle tags
+    $tags = explode(',', $request->tags);
+    $tags = array_map('trim', $tags);
+    if (count($tags) > 5) {
+        return redirect()->back()->withErrors(['tags' => 'You can only add up to 5 tags.'])->withInput();
     }
+    
+    $post->tags = json_encode($tags);
+    if ($request->hasFile('thum_image')) {
+        $file = $request->file('thum_image');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('upload/post/'), $filename);
+        $post->thum_image = $filename;
+    } else {
+        $post->thum_image = 'default-image.jpg';
+    }
+    $post->created_by = Auth::user()->id;
+    $post->status = 1;
+    $post->save(); 
+
+    return redirect('/profile')->with('message', 'Post Added Successfully'); // Redirect back with success message
+}
     public function showpost($slug)
     {
         $post = Post::where('slug', $slug)->firstOrFail();

@@ -25,12 +25,12 @@
                                         <!-- Shown when the user is logged in -->
                                         <a class="dropdown-item cursor-not-allowed">{{ Auth::user()->email }}</a>
                                         <a class="dropdown-item" href="{{ url('/profile') }}">My Profile</a>
-                                        <a class="dropdown-item" href="{{ url('/plans') }}">Become a Medium Member</a>
+                                        {{-- <a class="dropdown-item" href="{{ url('/plans') }}">Become a Talewix Member</a> --}}
                                         <a class="dropdown-item" href="{{ url('/getLogout') }}">Logout</a>
                                     @else
                                         <!-- Shown when the user is not logged in -->
                                         <div class="m-3">
-                                            <h5 class="mb-2">Get started on Medium</h5>
+                                            <h5 class="mb-2">Get started on Talewix</h5>
                                             <div class="btn-group justify-center">
                                                 <a href="{{ url('/login') }}" class="btn btn-outline-primary">Login</a>
                                                 <a href="{{ url('/register') }}" class="btn btn-outline-secondary">Register</a>
