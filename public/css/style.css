@@ -344,7 +344,8 @@ a.read-more:hover {
 .spanborder {
   border-bottom: 1px solid rgba(0, 0, 0, .15);
   margin-bottom: 1.8rem;
-  font-weight: 700;
+  /* font-weight: 700; */
+  font-size: 1rem;
 }
 
 .spanborder span {
@@ -1374,7 +1375,7 @@ blockquote ol:last-child {
 .author-content h5 {
   font-size: 1.1rem;
   font-weight: 600;
-  padding: 0px 0 10px;
+  /* padding: 0px 0 10px; */
   display: block;
   margin: 0;
 }
