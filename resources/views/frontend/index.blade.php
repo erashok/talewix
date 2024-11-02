@@ -126,7 +126,7 @@
                                 </div>
                                 <ul class="inline copyright">
                                     <li class="list-inline-item"><a href="#">Help</a></li>
-                                    <li class="list-inline-item"><a href="#">About</a></li>
+                                    <li class="list-inline-item"><a href="{{ url('/about') }}">About</a></li>
                                     <li class="list-inline-item"><a href="#">Contact</a></li>
                                     <li class="list-inline-item"><a href="#">Privacy</a></li>
                                     <li class="list-inline-item"><a href="#">Terms</a></li>

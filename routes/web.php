@@ -41,15 +41,17 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
   Route::get('settings', [App\Http\Controllers\Admin\SettingController::class, 'savedata']);
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('getLogout', [App\Http\Controllers\Auth\LoginController::class, 'getLogout'])->name('getLogout');
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified']);
 Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index']);
 Route::get('new-story', [App\Http\Controllers\Frontend\FrontendController::class, 'newstory']);
 Route::get('search', [App\Http\Controllers\Frontend\FrontendController::class, 'search']);
 Route::get('profile', [App\Http\Controllers\Frontend\FrontendController::class, 'userprofile']);
+Route::get('about', [App\Http\Controllers\Frontend\FrontendController::class, 'about']);
+
 Route::get('/profile/{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'showProfile'])->name('profile.show');
 Route::get('plans', [App\Http\Controllers\Frontend\FrontendController::class, 'plans']);
 Route::get('{category_slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'viewcategoryPost']);

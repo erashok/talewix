@@ -272,4 +272,9 @@ class FrontendController extends Controller
 
         return implode(', ', $suggestions);
     }
+
+    public function about()
+    {
+        return view('frontend.page.about');
+    }
 }
