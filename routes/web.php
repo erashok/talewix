@@ -59,6 +59,9 @@ Route::get('{category_slug}/{post_slug}', [App\Http\Controllers\Frontend\Fronten
 Route::get('/getLogout', [App\Http\Controllers\Frontend\FrontendController::class, 'getLogout'])->name('logout');
 Route::post('/add-story', [App\Http\Controllers\Frontend\FrontendController::class, 'addstory'])->name('addstory')->middleware('auth');
 Route::get('/posts/{slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'showpost'])->name('showpost');
+// Route::get('delete-post/{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'destroy']);
+Route::post('delete-post/{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'destroy'])->name('posts.destroy');
+
 Route::post('/profile/update', [App\Http\Controllers\Frontend\FrontendController::class, 'editProfile'])->name('editProfile');
 Route::get('@{username}/{slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'showPostDetails'])->name('showPostDetails');
 Route::post('/update-profile-image', [App\Http\Controllers\Frontend\FrontendController::class, 'updateProfileImage'])->name('updateProfileImage');

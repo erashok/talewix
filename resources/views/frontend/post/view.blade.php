@@ -44,17 +44,18 @@
                         <div class="entry-bottom">
                             <div class="tags-wrap heading">
                                 <span class="tags">
-                                    {{-- @forelse ($post as $posttag)
-                                            <a href="#" rel="tag">{{ $posttag->tags }}</a>
-                                        @empty
-                                            <p>No tags available.</p>
-                                        @endforelse --}}
-                                    <a href="#" rel="tag">fashion</a>
-                                    <a href="#" rel="tag">lifestyle</a>
-                                    <a href="#" rel="tag">news</a>
-                                    <a href="#" rel="tag">style</a>
-                                </span>
-                            </div>
+                                
+                                    @php
+    
+                                    $tagsArray = explode(',', $post->tags);
+                                @endphp
+                                
+                                <div>
+                                    @foreach ($tagsArray as $tag)
+                                        <span>
+                                            <a href="#" rel="tag">{{ trim($tag) }}</a></span> 
+                                    @endforeach
+                                        </span>   </div>
                         </div>
                     </article> <!--entry-content-->
 

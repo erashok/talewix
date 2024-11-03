@@ -80,20 +80,9 @@
                                             </td>
                                             <td>
                                                 @php
-                                                    // Decode the tags and handle possible issues
-                                                    $tags = json_decode($item->tags, true); // Add true to convert to associative array
+                                                    echo $item->tags;
                                                 @endphp
-                                                @if(is_array($tags) && !empty($tags))
-                                                    <ul>
-                                                        @foreach($tags as $tag)
-                                                            @if(is_string($tag)) <!-- Ensure $tag is a string before displaying -->
-                                                                <li>{{ e($tag) }}</li> <!-- Use e() to escape HTML entities -->
-                                                            @endif
-                                                        @endforeach
-                                                    </ul>
-                                                @else
-                                                    No tags available
-                                                @endif
+                                               
                                             </td>
                                             <td>
                                                 @if ($item->thum_image)

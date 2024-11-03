@@ -90,27 +90,40 @@ class FrontendController extends Controller
         'name' => 'required|string|max:255',
         'short_description' => 'required|string',
         'description' => 'required|string',
-        'tags' => 'nullable|string',
+        'tags' => 'nullable|string', 
         'thum_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
-
+    
+    // Create a new post
     $post = new Post();
-    $post->category_id = $request->category_id; 
+    $post->category_id = $request->category_id;
     $post->name = $request->name;
     $post->short_description = $request->short_description;
     $post->description = $request->description;
-    $post->user_id = Auth::user()->id;
+    $post->user_id = Auth::id(); 
     $post->user_name = Auth::user()->name;
-    $userName = Auth::user()->name;
     $post->slug = Str::slug($request->name);
-    // Handle tags
-    $tags = explode(',', $request->tags);
-    $tags = array_map('trim', $tags);
-    if (count($tags) > 5) {
+    
+    
+    $tags = [];
+    if (!empty($request->tags)) {
+       
+        $tagItems = explode(',', $request->tags);
+        foreach ($tagItems as $jsonString) {
+            $decoded = json_decode($jsonString, true);
+            
+            if ($decoded && isset($decoded['value'])) {
+                $tags[] = trim($decoded['value']);
+            }
+        }
+    }
+
+    if (count($tags) > 3) {
         return redirect()->back()->withErrors(['tags' => 'You can only add up to 5 tags.'])->withInput();
     }
-    
-    $post->tags = json_encode($tags);
+
+    $tagsString = implode(',', $tags);
+    $post->tags = $tagsString;
     if ($request->hasFile('thum_image')) {
         $file = $request->file('thum_image');
         $filename = time() . '.' . $file->getClientOriginalExtension();
@@ -273,6 +286,20 @@ class FrontendController extends Controller
         return implode(', ', $suggestions);
     }
 
+    public function destroy($id)
+{
+    $post = Post::findOrFail($id);
+
+    if ($post->user_id !== Auth::id()) {
+        return redirect()->back()->withErrors(['error' => 'Unauthorized action.']);
+    }
+
+    // Delete the post
+    $post->delete();
+
+    // Redirect with success message
+    return redirect()->back()->with('success', 'Post deleted successfully.');
+}
     public function about()
     {
         return view('frontend.page.about');

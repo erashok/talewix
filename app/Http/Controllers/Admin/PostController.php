@@ -35,13 +35,26 @@ class PostController extends Controller
         $post->short_description = $data['short_description'];
         $post->description = $data['description'];
     
-        // Handle tags: Convert comma-separated string to array and limit to 5
-        $tags = explode(',', $data['tags']);
-        $tags = array_map('trim', $tags);
-        if (count($tags) > 5) {
-            return redirect()->back()->withErrors(['tags' => 'You can only add up to 5 tags.'])->withInput();
+        $tags = [];
+
+if (!empty($request->tags)) {
+    $tagItems = explode(',', $request->tags);
+
+    foreach ($tagItems as $jsonString) {
+        $decoded = json_decode(trim($jsonString), true);
+        if ($decoded && isset($decoded['value'])) {
+            $tags[] = trim($decoded['value']);
+            if (count($tags) >= 3) {
+                break; 
+            }
         }
-        $post->tags = json_encode($tags);
+    }
+}
+if (count($tags) > 5) {
+    return redirect()->back()->withErrors(['tags' => 'You can only add up to 5 tags.'])->withInput();
+}
+$tagsString = implode(',', $tags);
+$post->tags = $tagsString;
     
         // Handle YouTube Frame (optional)
         $post->yt_frame = $data['yt_frame'] ?? null;
@@ -82,23 +95,38 @@ class PostController extends Controller
             $post = Post::find($post_id);
         
             $post->category_id = $data['category_id'];
+            // $post->user_id = Auth::user()->id;
             $post->name = $data['name'];
+            // $post->user_name = Auth::user()->name;
             $post->slug = Str::slug($data['slug']);
             $post->short_description = $data['short_description'];
             $post->description = $data['description'];
         
-            if (!empty($data['tags'])) {
-                $tags = explode(',', $data['tags']);
-                $tags = array_map('trim', $tags);
-                if (count($tags) > 5) {
-                    return redirect()->back()->withErrors(['tags' => 'You can only add up to 5 tags.'])->withInput();
+            $tags = [];
+            if (!empty($request->tags)) {
+                if (is_array($request->tags)) {
+                    foreach ($request->tags as $item) {
+                        if (isset($item['value'])) {
+                            $tags[] = trim($item['value']); 
+                        }
+                    }
+                } else {
+                    $tagsArray = json_decode($request->tags, true);
+                    if (is_array($tagsArray)) {
+                        foreach ($tagsArray as $item) {
+                            if (isset($item['value'])) {
+                                $tags[] = trim($item['value']);
+                            }
+                        }
+                    }
                 }
-        
-                $post->tags = json_encode($tags);
-            } else {
-                $post->tags = null;
             }
-        
+            if (count($tags) > 5) {
+                return redirect()->back()->withErrors(['tags' => 'You can only add up to 7 tags.'])->withInput();
+            }
+            $tagsString = implode(',', $tags);
+            $post->tags = $tagsString;
+
             $post->yt_frame = $data['yt_frame'] ?? null;
         
             try {
@@ -118,11 +146,14 @@ class PostController extends Controller
             $post->meta_title = $data['meta_title'];
             $post->meta_description = $data['meta_description'];
             $post->meta_keyword = $data['meta_keyword'];
-            
+            $post->ads_main = isset($data['ads_main']) ? '1' : '0';
+            $post->ads_sidebar = isset($data['ads_sidebar']) ? '1' : '0';
+            $post->right_sidebar = isset($data['right_sidebar']) ? '1' : '0';
+            $post->status = isset($data['status']) ? '1' : '0';
             // Removed the line that updates status
             // $post->status = $request->boolean('status') ? '1' : '0';
             
-            $post->created_by = Auth::user()->id;
+            // $post->created_by = Auth::user()->id;
         
             // Use the update method to save changes
             $post->update();

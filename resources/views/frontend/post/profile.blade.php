@@ -33,7 +33,11 @@
                                             <div class="content-social-author">
                                                 {{-- <a target="_blank" class="author-social" href="#">6 Followers</a>
                                                 <a target="_blank" class="author-social" href="#">2 Following</a> --}}
+                                                @if(Auth::user()->id == $user->id)
                                                 <a class="author-social" href="#" data-toggle="modal" data-target="#editprofile{{$user->id}}">Edit profile</a>
+                                                @else
+                                                <a class="author-social display-none" href="#" style="display: none">Edit profile</a>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -75,6 +79,11 @@
                                                     <span class="readingTime" title="{{ $post->estimated_reading_time ?? '0' }} min read">
                                                         {{ $post->estimated_reading_time ?? '0' }} min read
                                                     </span>
+                                                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display:inline;" class="delete-form">
+                                                        @csrf <!-- CSRF Token -->
+                                                        @method('POST') <!-- Method Spoofing -->
+                                                        <button type="button" class="btn btn-danger delete-btn">Delete</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
