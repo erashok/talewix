@@ -79,11 +79,20 @@
                                                     <span class="readingTime" title="{{ $post->estimated_reading_time ?? '0' }} min read">
                                                         {{ $post->estimated_reading_time ?? '0' }} min read
                                                     </span>
+                                                   
+                                                    @if(Auth::user()->id == $user->id)
                                                     <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display:inline;" class="delete-form">
                                                         @csrf <!-- CSRF Token -->
                                                         @method('POST') <!-- Method Spoofing -->
                                                         <button type="button" class="btn btn-danger delete-btn">Delete</button>
                                                     </form>
+                                                    @else
+                                                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display:none;" class="delete-form">
+                                                        @csrf <!-- CSRF Token -->
+                                                        @method('POST') <!-- Method Spoofing -->
+                                                        <button type="button" class="btn btn-danger delete-btn">Delete</button>
+                                                    </form>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
