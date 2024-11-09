@@ -1143,8 +1143,8 @@ ul.page-numbers li span.current {
 /*Form*/
 
 .form-control {
-  height: 50px;
-  line-height: 50px;
+  height: 45px;
+  line-height: 45px;
   padding: 15px;
   background: none;
   border-top: 0;
@@ -1844,4 +1844,21 @@ textarea {
   color: #fff !important;
   border-radius: 0 !important;
   text-decoration: none;
+}
+
+.btn-log-primary {
+  background-color: transparent;
+  border: 1px solid #000;
+  border-radius: 0 !important;
+  color: #000;
+  height: 45px;
+}
+
+.btn-log-primary:hover {
+  background-color: #000 !important;
+  border-color: transparent;
+  color: #fff !important;
+  border-radius: 0 !important;
+  text-decoration: none;
+  height: 45px;
 }
