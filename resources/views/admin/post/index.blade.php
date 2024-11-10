@@ -42,7 +42,6 @@
                                             <th>ID</th>
                                             <th>Category Name</th>
                                             <th>Post Name</th>
-                                            <th>Short Description </th>
                                             <th>Tags</th>
                                             <th>Image</th>
                                             <th>Ads Main</th>
@@ -56,7 +55,6 @@
                                         <th>ID</th>
                                             <th>Category Name</th>
                                             <th>Post Name</th>
-                                            <th>Short Description </th>
                                             <th>Tags</th>
                                             <th>Thumnail Image</th>
                                             <th>Ads Main</th>
@@ -70,14 +68,14 @@
                                         <tr>
                                             <td>{{ $item->id }}</td>
                                             <td>{{ $item->category->name ?? 'No category' }}</td>
-                                            <td>{{ $item->name }}</td>
-                                            <td>
+                                            <td>{{ \Illuminate\Support\Str::words($item->name, 3, '...') }}</td>
+                                            {{-- <td>
                                                 @php
                                                     $description = explode(' ', $item->short_description);
                                                     $limitedDescription = implode(' ', array_slice($description, 0, 10));
                                                 @endphp
                                                 {{ $limitedDescription }}
-                                            </td>
+                                            </td> --}}
                                             <td>
                                                 @php
                                                     echo $item->tags;

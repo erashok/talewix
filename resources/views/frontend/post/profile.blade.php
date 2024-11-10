@@ -33,10 +33,11 @@
                                             <div class="content-social-author">
                                                 {{-- <a target="_blank" class="author-social" href="#">6 Followers</a>
                                                 <a target="_blank" class="author-social" href="#">2 Following</a> --}}
-                                                @if(Auth::user()->id == $user->id)
-                                                <a class="author-social" href="#" data-toggle="modal" data-target="#editprofile{{$user->id}}">Edit profile</a>
+                                                @if(isset($user) && Auth::check() && Auth::user()->id == $user->id)
+                                                {{-- @if(Auth::user()->id == $user->id) --}}
+                                                     <a class="author-social" href="#" data-toggle="modal" data-target="#editprofile{{$user->id}}">Edit profile</a>
                                                 @else
-                                                <a class="author-social display-none" href="#" style="display: none">Edit profile</a>
+                                                    <a class="author-social display-none" href="#" style="display: none">Edit profile</a>
                                                 @endif
                                             </div>
                                         </div>
@@ -80,17 +81,24 @@
                                                         {{ $post->estimated_reading_time ?? '0' }} min read
                                                     </span>
                                                    
-                                                    @if(Auth::user()->id == $user->id)
+                                                    {{-- @if(Auth::user()->id == $user->id) --}}
+                                                    @if(isset($user) && Auth::check() && Auth::user()->id == $user->id)
                                                     <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display:inline;" class="delete-form">
                                                         @csrf <!-- CSRF Token -->
                                                         @method('POST') <!-- Method Spoofing -->
-                                                        <button type="button" class="btn btn-danger delete-btn">Delete</button>
+                                                        <button type="button" class="badge badge-pill badge-danger delete-btn"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                                          </svg> Delete</button>
                                                     </form>
                                                     @else
                                                     <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display:none;" class="delete-form">
                                                         @csrf <!-- CSRF Token -->
                                                         @method('POST') <!-- Method Spoofing -->
-                                                        <button type="button" class="btn btn-danger delete-btn">Delete</button>
+                                                        <button type="button" class="badge badge-pill badge-danger delete-btn"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                                          </svg> Delete</button>
                                                     </form>
                                                     @endif
                                                 </div>
@@ -118,7 +126,7 @@
                                             <div class="post-content">
                                                 <h5 class="entry-title mb-2"><a href="{{ url($latest_post_item->category->slug.'/'.$latest_post_item->slug) }}">{{$latest_post_item->name}}</a></h5>
                                                 <div class="entry-meta align-items-center">
-                                                    <a href="#">{{ $latest_post_item->user->name }}</a> in 
+                                                    <a href="{{url('profile/'.$latest_post_item->user->id )}}">{{ $latest_post_item->user->name }}</a> in 
                                                     <a href="{{ url(Str::slug($latest_post_item->category->name))}}">{{ $latest_post_item->category->name ?? 'Uncategorized' }}</a><br>
                                                     <span>{{ $latest_post_item->created_at->format('M j, Y') }}</span>
                                                 </div>
@@ -143,7 +151,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <div class="profile-image-section">
+                                {{-- <div class="profile-image-section">
                                     <img id="profileImage" src="{{ asset('upload/user_img/' . ($user->pro_img ?? 'images/user-avatar.svg')) }}" alt="Profile Picture" class="profile-image" />
                                     <div class="image-buttons">
                                         <input type="file" id="imageInput" accept="image/*" style="display: none;" />
@@ -152,7 +160,7 @@
                                     </div>
                                     <p class="image-info">Recommended: Square JPG, PNG, or GIF, at least 250 pixels per side.</p>
                                 </div>
-                                <div id="responseMessage"></div>
+                                <div id="responseMessage"></div> --}}
                                 <form action="{{ route('editProfile') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                 
@@ -170,7 +178,7 @@
                                         <input type="text" id="user_slug" name="user_slug" maxlength="100" value="{{ old('user_slug', $user->user_slug) }}" placeholder="Add..." />
                 
                                         <div class="d-flex justify-content-between">
-                                            <span class="char-count">storfy.com/{{ $user->user_slug }}</span>
+                                            <span class="char-count">talewix.com/{{ $user->user_slug }}</span>
                                             <span class="char-count" id="charCount">
                                                 {{ strlen(old('user_slug', $user->user_slug)) }}/100
                                             </span>
