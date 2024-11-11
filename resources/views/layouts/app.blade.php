@@ -82,7 +82,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <!-- Include SweetAlert CSS and JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-    <script src="https://js.stripe.com/v3/"></script>
+    {{-- <script src="https://js.stripe.com/v3/"></script> --}}
     
     <script>
         document.querySelectorAll('.subscribe-btn').forEach(button => {
@@ -159,13 +159,6 @@
         $('#exampleModalCenter').modal('hide');
     });
     </script>
-<script>
-
-function redirectToPost(userName, postSlug) {
-    const url = `/post/${userName}/${postSlug}`;
-    window.location.href = url;
-}
-</script>
 <script>
     document.querySelectorAll('.delete-btn').forEach(button => {
         button.addEventListener('click', function() {

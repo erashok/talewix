@@ -18,7 +18,7 @@
                                         <div class="author-content">
                                             <div class="top-author">
                                                 <h5 class="heading-font">
-                                                    <a href="#" title="{{ $user->name }}" rel="author">
+                                                    <a href="{{url('profile/' .$user->id )}}" title="{{ $user->name }}" rel="author">
                                                         {{ $user->name }}
                                                         <span class="svgIcon svgIcon--star">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#03a87c" class="bi bi-patch-check-fill" viewBox="0 0 16 16">
@@ -47,7 +47,7 @@
                                 <h6 class="spanborder">
                                     <a href="{{ url('/profile') }}" class="mr-2"><span>Home</span></a>
                                     {{-- <a href="{{ url('/storfy-member') }}" class="mr-2"><span>Storfy Member</span></a> --}}
-                                    <a href="{{ url('/about') }}" class="mr-2"><span>About</span></a>
+                                    {{-- <a href="{{ url('/about') }}" class="mr-2"><span>About</span></a> --}}
                                 </h6>
                                 @if($posts->isEmpty())
                                 <div class="alert alert-info text-center">
@@ -61,15 +61,16 @@
                                             <div class="align-self-center">
                                                 <div class="capsSubtle mb-0">
                                                     <img alt="author avatar" src="{{ $post->user->pro_img ? url('upload/user_img/' . $post->user->pro_img) : url('images/user-avatar.svg') }}" class="Prifle-post" height="25" width="25">
-                                                    <a href="{{ url('profile') }}">{{ $post->user->name }}</a>
+                                                    <a href="{{url('profile/'.$post->user->id )}}">{{ $post->user->name }}</a>
                                                     {{-- Uncomment if you want to display category name --}}
                                                     {{-- <a href="{{ url(Str::slug($post->category->name)) }}">{{ $post->category->name }}</a> --}}
                                                 </div>
                                                 <h3 class="entry-title mb-2">
-                                                    <a href="javascript:void(0);" onclick="redirectToPost('{{ $post->user_name }}', '{{ $post->slug }}')">
+                                                    <a href="{{ url('@' . $post->user->user_slug . '/' . $post->slug) }}">
                                                         {{ $post->name }}
-                                                    </a>
+                                                    </a>                                                        
                                                 </h3>
+
                                                 <div class="entry-excerpt">
                                                     <p>{{ \Illuminate\Support\Str::words($post->short_description, 30, '...') }}</p>
                                                 </div>

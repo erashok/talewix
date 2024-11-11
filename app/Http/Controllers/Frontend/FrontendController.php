@@ -146,12 +146,11 @@ class FrontendController extends Controller
 
     public function showPostDetails($username, $slug)
     {
-        $usernameSlug = ltrim($username, '@');
-        $user = User::where('slug', $usernameSlug)->firstOrFail();
-        $post = Post::where('slug', $slug)
-            ->where('user_id', $user->id)
-            ->firstOrFail();
+        $user = User::where('user_slug', $username)->firstOrFail();
+        $post = Post::where('slug', $slug)->where('user_id', $user->id)->firstOrFail();
+        return view('post.show', compact('user', 'post'));
     }
+    
     public function userprofile()
     {
         if (Auth::check()) {

@@ -12,7 +12,7 @@
                             {{ $post->name }}
                             </h1>
                             <div class="entry-meta align-items-center">
-                                <a class="author-avatar" href="#">
+                                <a class="author-avatar" href="{{url('profile/'.$post->user->id )}}">
                                     <img src="{{ asset($post->user->pro_img ? 'upload/user_img/' . $post->user->pro_img : 'images/user-avatar.svg') }}" alt="Author Avatar">
                                 </a>
                                 <a href="{{url('profile/'.$post->user->id )}}">{{ $post->user->name }}</a><br>
