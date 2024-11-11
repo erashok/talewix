@@ -16,19 +16,15 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $all_categories = Category::where('status', '1')
-            ->take(9)
-            ->get();
-        $latest_posts = Post::where('status', '1')
-            ->orderBy('created_at', 'DESC')
-            ->take(6)
-            ->get();
-        $right_sidebar = Post::where('status', '1')
-            ->orderBy('created_at', 'DESC')
-            ->take(1)
-            ->get();
-        return view('frontend.index', compact('all_categories', 'latest_posts', 'right_sidebar'));
-    }
+        $all_categories = Category::where('status', '1')->take(9)->get();
+        $latest_posts = Post::where('status', '1')->orderBy('created_at', 'DESC')->take(6)->get();
+        $right_sidebar = Post::where('status', '1')->orderBy('created_at', 'DESC')->take(1)->get();
+        
+        // Get categories for navbar
+        $navbar_categories = Category::where('navbar_status', '1')->where('status', '1')->get();
+    
+        return view('frontend.index', compact('all_categories', 'latest_posts', 'right_sidebar', 'navbar_categories'));
+    }    
 
     public function viewcategoryPost(string $category_slug)
     {
