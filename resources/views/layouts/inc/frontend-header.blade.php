@@ -1,7 +1,7 @@
  <header id="header" class="d-lg-block d-none">
                 <div class="container">
                     <div class="align-items-center w-100">
-                        <h1 class="logo float-left navbar-brand"><a href="{{ url('/') }}" class="logo">Talewix</a></h1>
+                        <h1 class="logo float-left navbar-brand"><a href="{{ url('/') }}" class="logo">Talewix.com</a></h1>
                         <div class="header-right float-right w-50">
                             <div class="d-inline-flex float-right text-right align-items-center">
                                
