@@ -41,15 +41,17 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
   Route::get('settings', [App\Http\Controllers\Admin\SettingController::class, 'savedata']);
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('getLogout', [App\Http\Controllers\Auth\LoginController::class, 'getLogout'])->name('getLogout');
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified']);
 Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index']);
 Route::get('new-story', [App\Http\Controllers\Frontend\FrontendController::class, 'newstory']);
 Route::get('search', [App\Http\Controllers\Frontend\FrontendController::class, 'search']);
 Route::get('profile', [App\Http\Controllers\Frontend\FrontendController::class, 'userprofile']);
+Route::get('about', [App\Http\Controllers\Frontend\FrontendController::class, 'about']);
+
 Route::get('/profile/{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'showProfile'])->name('profile.show');
 Route::get('plans', [App\Http\Controllers\Frontend\FrontendController::class, 'plans']);
 Route::get('{category_slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'viewcategoryPost']);
@@ -57,6 +59,9 @@ Route::get('{category_slug}/{post_slug}', [App\Http\Controllers\Frontend\Fronten
 Route::get('/getLogout', [App\Http\Controllers\Frontend\FrontendController::class, 'getLogout'])->name('logout');
 Route::post('/add-story', [App\Http\Controllers\Frontend\FrontendController::class, 'addstory'])->name('addstory')->middleware('auth');
 Route::get('/posts/{slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'showpost'])->name('showpost');
+// Route::get('delete-post/{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'destroy']);
+Route::post('delete-post/{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'destroy'])->name('posts.destroy');
+
 Route::post('/profile/update', [App\Http\Controllers\Frontend\FrontendController::class, 'editProfile'])->name('editProfile');
 Route::get('@{username}/{slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'showPostDetails'])->name('showPostDetails');
 Route::post('/update-profile-image', [App\Http\Controllers\Frontend\FrontendController::class, 'updateProfileImage'])->name('updateProfileImage');

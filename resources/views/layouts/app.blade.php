@@ -40,6 +40,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.13.3/tagify.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <!-- Icons fonts -->
     <link href="{{ asset('css/fontello.css') }}" rel="stylesheet">
     <!-- Popup -->
@@ -79,7 +80,9 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.4.0/tagify.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    <script src="https://js.stripe.com/v3/"></script>
+    <!-- Include SweetAlert CSS and JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    {{-- <script src="https://js.stripe.com/v3/"></script> --}}
     
     <script>
         document.querySelectorAll('.subscribe-btn').forEach(button => {
@@ -123,7 +126,7 @@
 </script>    
     <script>document.addEventListener('DOMContentLoaded', function () {
         var input = document.querySelector('#tags');
-        new Tagify(input);
+         new Tagify(input);
     });
     </script>
     <script>
@@ -157,34 +160,26 @@
     });
     </script>
 <script>
-
-function redirectToPost(userName, postSlug) {
-    const url = `/post/${userName}/${postSlug}`;
-    window.location.href = url;
-}
-</script>
-<script>
-    document.getElementById('updateImageBtn').addEventListener('click', function() {
-        document.getElementById('imageInput').click(); // Trigger file input click
-    });
-
-    document.getElementById('imageInput').addEventListener('change', function(event) {
-        const file = event.target.files[0]; // Get the selected file
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('profileImage').src = e.target.result; // Update image preview
-                document.getElementById('responseMessage').innerText = ''; // Clear any previous messages
-            }
-            reader.readAsDataURL(file); // Read the file as a data URL
-        }
-    });
-
-    document.getElementById('removeImageBtn').addEventListener('click', function(e) {
-        e.preventDefault(); // Prevent the default link action
-        document.getElementById('profileImage').src = '{{ asset('images/default-image.jpg') }}'; // Reset to default image
-        document.getElementById('responseMessage').innerText = 'Profile image removed.'; // Show message
-        document.getElementById('imageInput').value = ''; // Clear the file input
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const form = this.closest('.delete-form');
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this post!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel!",
+                closeOnConfirm: false
+            }, function(isConfirm) {
+                if (isConfirm) {
+                    form.submit(); // Submit the form if confirmed
+                } else {
+                    swal("Cancelled", "Your post is safe :)", "error");
+                }
+            });
+        });
     });
 </script>
 </body>

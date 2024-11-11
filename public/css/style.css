@@ -366,7 +366,7 @@ a.read-more:hover {
 /* FONTS & TYPOGRAPHY */
 body {
   font-size: 16px;
-  color: rgba(0, 0, 0, .84);
+  color: #0c0c0d;
 }
 
 /* body,
@@ -392,9 +392,11 @@ body {
   max-width: 100%;
   padding-top: 2rem;
 }
-.Prifle-post{
+
+.Prifle-post {
   border-radius: 100%;
 }
+
 /*Top Search*/
 .search-popup {
   display: none;
@@ -1141,8 +1143,8 @@ ul.page-numbers li span.current {
 /*Form*/
 
 .form-control {
-  height: 50px;
-  line-height: 50px;
+  height: 45px;
+  line-height: 45px;
   padding: 15px;
   background: none;
   border-top: 0;
@@ -1351,7 +1353,7 @@ blockquote ol:last-child {
 }
 
 .author-img>img {
-  max-width: 120px;
+  max-width: 80px;
   border: 3px solid #fff;
   border-radius: 100%;
 }
@@ -1798,4 +1800,65 @@ textarea {
 
 .header-action input:hover {
   background-color: #228773;
+}
+
+.section-heading h2 {
+  font-size: 1.594em;
+  line-height: 1.2em;
+  font-weight: bold;
+}
+
+.hero-content-wrap h1 {
+  font-size: 36px;
+  line-height: 1.2em;
+  font-weight: bold;
+  color: #0c0c0d;
+}
+
+.tw-btn-secondary {
+  background-color: transparent;
+  border: 2px solid #000;
+  border-radius: 0;
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.tw-btn-secondary:hover {
+  background-color: #000;
+  border-color: transparent;
+  color: #fff;
+  text-decoration: none;
+}
+
+.twr-btn-secondary {
+  background-color: transparent;
+  border: 1px solid #000;
+  border-radius: 0 !important;
+  color: #000;
+}
+
+.twr-btn-secondary:hover {
+  background-color: #000;
+  border-color: transparent;
+  color: #fff !important;
+  border-radius: 0 !important;
+  text-decoration: none;
+}
+
+.btn-log-primary {
+  background-color: transparent;
+  border: 1px solid #000;
+  border-radius: 0 !important;
+  color: #000;
+  height: 45px;
+}
+
+.btn-log-primary:hover {
+  background-color: #000 !important;
+  border-color: transparent;
+  color: #fff !important;
+  border-radius: 0 !important;
+  text-decoration: none;
+  height: 45px;
 }

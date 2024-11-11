@@ -59,11 +59,11 @@
                                                         <textarea name="description" rows="16" id="post_summernote" class="form-control" required>{!! $post->description !!}</textarea>
                                                     </div>
                                                     <div class="col-sm-12 form-group">
-                                                        @if($errors->has('tags'))
+                                                        {{-- @if($errors->has('tags'))
                                                                         <div class="alert alert-danger">{{ $errors->first('tags') }}</div>
-                                                                    @endif
+                                                                    @endif --}}
                                                         <label>tags</label>
-                                                        <input type="text" name="tags" id="tags" class="form-control" placeholder="Add tags" value="{{ old('tags') }}">
+                                                        <input type="text" name="tags" id="tags" class="form-control" placeholder="Add tags" value="{{$post->tags}}">
                                                     </div>
                                                     <div class="col-sm-12 form-group">
                                                         <label>YouTube Frame (Optional)</label>
@@ -88,24 +88,24 @@
                                                     <div class="col-sm-12">
                                                        <div class="check-list m-b-20 m-t-10">
                                                             <label class="ui-checkbox">
-                                                                <input type="hidden" name="ads_main" value="0">
-                                                                <input type="checkbox" name="ads_main" value="1" {{ isset($posts) && $posts->ads_main == '1' ? 'checked' : '' }} />
+                                                                {{-- <input type="hidden" name="ads_main" value="0"> --}}
+                                                                <input type="checkbox" name="ads_main" value="1" {{ isset($post) && $post->ads_main == '1' ? 'checked' : '0' }} />
                                                                 <span class="input-span"></span>Ads Main
                                                             </label>
                                                              <label class="ui-checkbox">
-                                                                <input type="hidden" name="ads_sidebar" value="0">
-                                                                <input type="checkbox" name="ads_sidebar" value="1" {{ isset($posts) && $posts->ads_sidebar == '1' ? 'checked' : '' }} />
+                                                               {{-- / <input type="hidden" name="ads_sidebar" value="0"> --}}
+                                                                <input type="checkbox" name="ads_sidebar" value="1" {{ isset($post) && $post->ads_sidebar == '1' ? 'checked' : '0' }} />
                                                                 <span class="input-span"></span>Ads Sidebar
                                                             </label>
                                                              <label class="ui-checkbox">
-                                                                <input type="hidden" name="right_sidebar" value="0">
-                                                                <input type="checkbox" name="right_sidebar" value="1" {{ isset($posts) && $posts->right_sidebar == '1' ? 'checked' : '' }} />
+                                                                {{-- <input type="hidden" name="right_sidebar" value="0"> --}}
+                                                                <input type="checkbox" name="right_sidebar" value="1" {{ isset($post) && $post->right_sidebar == '1' ? 'checked' : '0' }} />
                                                                 <span class="input-span"></span>right Sidebar
                                                             </label>
 
                                                             <label class="ui-checkbox">
-                                                                <input type="hidden" name="status" value="0">
-                                                                <input type="checkbox" name="status" value="1" {{ isset($posts) && $posts->status == '1' ? 'checked' : '' }} />
+                                                                {{-- <input type="hidden" name="status" value="0"> --}}
+                                                                <input type="checkbox" name="status" value="1" {{ isset($post) && $post->status == '1' ? 'checked' : '0' }} />
                                                                 <span class="input-span"></span>Status
                                                             </label>
                                                         </div>

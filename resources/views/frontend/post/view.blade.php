@@ -7,15 +7,15 @@
     
 <div class="container">
                     <div class="entry-header">
-                        <div class="mb-5">
-                            <h1 class="entry-title m_b_2rem">
+                        <div class="mb-3">
+                            <h1 class="entry-title mb-2">
                             {{ $post->name }}
                             </h1>
                             <div class="entry-meta align-items-center">
-                                <a class="author-avatar" href="#">
+                                <a class="author-avatar" href="{{url('profile/'.$post->user->id )}}">
                                     <img src="{{ asset($post->user->pro_img ? 'upload/user_img/' . $post->user->pro_img : 'images/user-avatar.svg') }}" alt="Author Avatar">
                                 </a>
-                                <a href="#">{{ $post->user->name }}</a><br>
+                                <a href="{{url('profile/'.$post->user->id )}}">{{ $post->user->name }}</a><br>
                                 <span>{{ $post->created_at->format('M j, Y') }}</span>
                                 <span class="middotDivider"></span>
                                 {{-- <span class="readingTime" title="{{ $postitem->reading_time }}">{{ $postitem->reading_time }}</span> --}}
@@ -44,17 +44,18 @@
                         <div class="entry-bottom">
                             <div class="tags-wrap heading">
                                 <span class="tags">
-                                    {{-- @forelse ($post as $posttag)
-                                            <a href="#" rel="tag">{{ $posttag->tags }}</a>
-                                        @empty
-                                            <p>No tags available.</p>
-                                        @endforelse --}}
-                                    <a href="#" rel="tag">fashion</a>
-                                    <a href="#" rel="tag">lifestyle</a>
-                                    <a href="#" rel="tag">news</a>
-                                    <a href="#" rel="tag">style</a>
-                                </span>
-                            </div>
+                                
+                                    @php
+    
+                                    $tagsArray = explode(',', $post->tags);
+                                @endphp
+                                
+                                <div>
+                                    @foreach ($tagsArray as $tag)
+                                        <span>
+                                            <a href="#" rel="tag">{{ trim($tag) }}</a></span> 
+                                    @endforeach
+                                        </span>   </div>
                         </div>
                     </article> <!--entry-content-->
 

@@ -27,7 +27,7 @@
                                                             <h5 class="entry-title mb-2"><a href="{{ url($latest_post_item->category->slug.'/'.$latest_post_item->slug) }}">{{$latest_post_item->name}}</a></h5>
                                                             <div class="entry-excerpt">
                                                                 <p>
-                                                                     {{ \Illuminate\Support\Str::words($latest_post_item->short_description, 12, '...') }}
+                                                                     {{ \Illuminate\Support\Str::words($latest_post_item->short_description, 6, '...') }}
                                                                 </p>
                                                             </div>
                                                             <div class="entry-meta align-items-center">
@@ -124,6 +124,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                <ul class="inline copyright">
+                                    <li class="list-inline-item"><a href="#">Help</a></li>
+                                    <li class="list-inline-item"><a href="{{ url('/about') }}">About</a></li>
+                                    <li class="list-inline-item"><a href="#">Contact</a></li>
+                                    <li class="list-inline-item"><a href="#">Privacy</a></li>
+                                    <li class="list-inline-item"><a href="#">Terms</a></li>
+                                </ul>
                             </div> <!--col-md-4-->
                         </div>
                     </div> <!--content-widget-->
