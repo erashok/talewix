@@ -25,9 +25,9 @@
                     <ul>
                          <li class="current-menu-item"><a href="{{ url('/') }}">For You</a></li>
                          @php
-                            $categories = App\Models\Category::where('navbar_status', '1')->where('status','1')->get();
+                            $all_categories = App\Models\Category::where('navbar_status', '1')->where('status','1')->get();
                         @endphp
-                        @foreach ($categories as $mcatitem)
+                        @foreach ($all_categories as $mcatitem)
                             <li><a href="{{ url($mcatitem->slug) }}">{{ $mcatitem->name }}</a></li>
                         @endforeach
                     </ul>
