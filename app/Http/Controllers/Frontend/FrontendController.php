@@ -17,11 +17,12 @@ class FrontendController extends Controller
    public function index()
 {
     $all_categories = Category::where('status', '1')->take(9)->get();
+    $categores = Category::where('status','1')->get();
     $latest_posts = Post::where('status', '1')->orderBy('created_at', 'DESC')->take(6)->get();
     $right_sidebar = Post::where('status', '1')->orderBy('created_at', 'DESC')->take(1)->get();
     // Get categories for navbar
     $navbar_status = Category::where('navbar_status', '1')->where('status', '1')->get();
-    return view('frontend.index', compact('all_categories', 'latest_posts', 'right_sidebar', 'navbar_status'));
+    return view('frontend.index', compact('all_categories', 'latest_posts', 'right_sidebar', 'navbar_status', 'categores'));
 }
 
 
