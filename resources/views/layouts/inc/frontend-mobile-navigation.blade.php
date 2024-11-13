@@ -24,9 +24,12 @@
                 <nav>
                     <ul>
                          <li class="current-menu-item"><a href="{{ url('/') }}">For You</a></li>
-                                @php
+                                {{-- @php
                                     $categories = App\Models\Category::where('navbar_status', '1')->where('status','1')->get();
-                                @endphp
+                                @endphp --}}
+                                @php
+                                $categories = App\Models\Category::where('navbar_status', '1')->where('status','1')->take(5)->get();
+                                 @endphp
                                 @foreach ($categories as $catitem)
                                     <li><a href="{{ url($catitem->slug) }}">{{ $catitem->name }}</a></li>
                                 @endforeach
