@@ -24,6 +24,7 @@
                 <nav>
                     <ul>
                          <li class="current-menu-item"><a href="{{ url('/') }}">For You</a></li>
+
                          @php
                             use App\Models\Category;
 
