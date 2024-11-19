@@ -24,15 +24,13 @@
                 <nav>
                     <ul>
                          <li class="current-menu-item"><a href="{{ url('/') }}">For You</a></li>
+                                @php
+                                    use App\Models\Category;
 
-                         @php
-                            use App\Models\Category;
-
-                            $categories = Category::where('navbar_status', '1')
-                                ->where('status', '1')
-                                ->get();
-                        @endphp
-
+                                    $categories = Category::where('navbar_status', '1')
+                                        ->where('status', '1')
+                                        ->get();
+                                @endphp
                                 {{-- @php
                                     $categories = App\Models\Category::where('navbar_status', '1')->where('status','1')->get();
                                 @endphp --}}
