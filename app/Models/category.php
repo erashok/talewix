@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class category extends Model
+class Category extends Model
 {
     use HasFactory;
 
     protected $table = 'categories';
 
-    protected $fillable=[
+    protected $fillable = [
         'name',
         'slug',
         'description',
@@ -23,11 +23,11 @@ class category extends Model
         'navbar_footer',
         'navbar_sidebar',
         'status',
-        'created_by'
-
+        'created_by',
     ];
 
-    public function posts(){
+    public function posts()
+    {
         return $this->hasMany(Post::class, 'category_id', 'id');
-    }    
+    }
 }
