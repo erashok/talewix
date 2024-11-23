@@ -1,0 +1,45 @@
+.pb-button-primary:focus, .pb-button-primary:hover{
+	color: #fff;
+    border: 1px solid #fff;
+    background-image: linear-gradient(to left top, #2f80ed, #a16cd0, #cf5ca5, #db5d77, #d16d53);
+    text-decoration: none;
+}
+.pb-hd h1{
+	color: #2f80ed;
+}
+.pb-accordion-title{
+	text-decoration: none !important;
+}
+.pb-sticky-fixed{
+
+}
+.pb-list li i{
+	color: #e56029;
+}
+.brd{
+	    border: thin solid #dadce0;
+    border-radius: .5rem;
+    padding: 3rem;
+}
+.pb-form-label {
+    color: #333;
+    font-size: .866rem;
+    font-weight: 600;
+}
+.text-danger{
+	color: red;
+}
+
+.mb-35{
+	margin-bottom: 35px;
+}
+.pb-35{
+	padding-bottom: 35px;
+}
+::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(to left top, #39f, #39f, #39f, #39f, #39f);
+    border-radius: 25px;
+}
+::-webkit-scrollbar {
+    width: 8px;
+}
