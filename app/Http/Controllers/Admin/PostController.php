@@ -18,7 +18,7 @@ class PostController extends Controller
         return view('admin.post.index', compact('posts'));
     }
      public function create(){
-        $category = Category:: where('status','1')->get();
+        $category = category:: where('status','1')->get();
         return view('admin.post.create', compact('category'));
     }
 
@@ -84,7 +84,7 @@ $post->tags = $tagsString;
         return redirect('/admin/posts')->with('message', 'Post Added Successfully');
     }
         public function edit($post_id){
-            $category = Category::where('status','1')->get();
+            $category = category::where('status','1')->get();
             $post = Post::find($post_id);
             return view('admin.post.edit', compact('post','category'));
         }
