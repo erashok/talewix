@@ -14,7 +14,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-         $category = Category::all();
+         $category = category::all();
         return view('admin.category.index', compact('category'));
     }
     public function create()
@@ -24,7 +24,7 @@ class CategoryController extends Controller
     public function store(CategoryFormRequest $request)
     {
         $data = $request->validated();
-        $category = new Category;
+        $category = new category;
         $category->name = $data['name'];
         $category->slug = Str::slug($data['slug']);
         $category->description = $data['description'];
@@ -48,14 +48,14 @@ class CategoryController extends Controller
     }
 
     public function edit($category_id){
-        $category = Category::find($category_id);
+        $category = category::find($category_id);
         return view('admin.category.edit', compact('category'));
     }
 
     public function update(CategoryFormRequest $request, $category_id){
 
         $data = $request->validated();
-        $category = Category::find($category_id);
+        $category = category::find($category_id);
         $category->name = $data['name'];
         $category->slug = Str::slug($data['slug']);
         $category->description = $data['description'];
@@ -86,7 +86,7 @@ class CategoryController extends Controller
     }
 
     public function destroy(Request $request){
-        $category = Category::find($request->category_delete_id);
+        $category = category::find($request->category_delete_id);
         if($category){
              $destination = 'upload/category/'.$category->cat_image;
             if (File::exists($destination)){

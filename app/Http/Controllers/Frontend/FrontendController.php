@@ -16,7 +16,7 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $all_categories = Category::where('status', '1')
+        $all_categories = category::where('status', '1')
             ->take(9)
             ->get();
         $latest_posts = Post::where('status', '1')
@@ -32,7 +32,7 @@ class FrontendController extends Controller
 
     public function viewcategoryPost(string $category_slug)
     {
-        $category = Category::where('slug', $category_slug)
+        $category = category::where('slug', $category_slug)
             ->where('status', '1')
             ->first();
 
@@ -51,7 +51,7 @@ class FrontendController extends Controller
 
     public function viewpost(string $category_slug, string $post_slug)
     {
-        $category = Category::where('slug', $category_slug)
+        $category = category::where('slug', $category_slug)
             ->where('status', '1')
             ->first();
 
@@ -73,7 +73,7 @@ class FrontendController extends Controller
 
     public function newstory()
     {
-        $categories = Category::where('status', '1')->get();
+        $categories = category::where('status', '1')->get();
         if ($categories->isEmpty()) {
             return redirect()
                 ->back()

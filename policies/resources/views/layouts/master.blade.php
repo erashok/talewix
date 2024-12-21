@@ -11,19 +11,19 @@
     <!-- iOS Safari -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#2f80ed">
-    <title>Privacy Policy & Terms - pureblissy</title>
+    <title>Privacy Policy & Terms - Talewix</title>
     <link rel="icon" type="image/png" href="{{ asset('public/assets/img/16x16.png')}}" sizes="16x16">
     <link rel="icon" type="image/png" href="{{ asset('public/assets/img/32x32.png')}}" sizes="32x32">
     <link rel="icon" type="image/png" href="{{ asset('public/assets/img/48x48.png')}}" sizes="48x48">
     <link rel="icon" type="image/png" href="{{ asset('public/assets/img/64x64.png')}}" sizes="64x64">
     <meta property="og:type" content= "website" />
-    <meta property="og:url" content="https://policies.pureblissy.com"/>
-    <meta property="og:site_name" content="Privacy Policy & Terms - pureblissy" />
+    <meta property="og:url" content="https://policies.talewix.com"/>
+    <meta property="og:site_name" content="Privacy Policy & Terms - talewix" />
     <meta property="og:image" itemprop="image primaryImageOfPage" content="{{ asset('public/assets/img/favicon.png')}}" />
-    <meta name="pureblissy:card" content="summary"/>
-    <meta name="pureblissy:domain" content="policies.pureblissy.com"/>
-    <meta name="pureblissy:title" property="og:title" itemprop="name" content="Privacy Policy & Terms - pureblissy" />
-    <meta name="pureblissy:description" property="og:description" itemprop="description" content="PurBlissy assures to protect and respect your privacy in connection with your use of our website, www.pureblissy.com (the “Website(s)”), applications (“Apps”) and other products/ services and features." />
+    <meta name="talewix:card" content="summary"/>
+    <meta name="talewix:domain" content="policies.talewix.com"/>
+    <meta name="talewix:title" property="og:title" itemprop="name" content="Privacy Policy & Terms - talewix" />
+    <meta name="talewix:description" property="og:description" itemprop="description" content="PurBlissy assures to protect and respect your privacy in connection with your use of our website, www.talewix.com (the “Website(s)”), applications (“Apps”) and other products/ services and features." />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('public/assets/css/all.min.css')}}" />
     <script src="{{ asset('public/assets/jsjquery.js')}}"></script>
