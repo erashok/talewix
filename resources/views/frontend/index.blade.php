@@ -66,7 +66,12 @@
                                                 </p>
                                             </div>
                                             <div class="entry-meta align-items-center">
-                                                <a href="{{url('profile/'.$latest_post_item->user->id )}}">{{ $latest_post_item->user->name}}</a> in <a href="{{ url(Str::slug($latest_post_item->category->name))}}"> {{ $latest_post_item->category->name }}</a><br>
+                                                @if(Auth::check())
+                                                <a href="{{url('profile/'.$latest_post_item->user->id )}}">{{ $latest_post_item->user->name}}</a>
+                                             @else
+                                                <a href="{{ route('login') }}">Login to view profile</a>
+                                             @endif 
+                                                in <a href="{{ url(Str::slug($latest_post_item->category->name))}}"> {{ $latest_post_item->category->name }}</a><br>
                                                 <span>{{ $latest_post_item->created_at->format('M j, Y') }}</span>
                                                 <span class="middotDivider"></span>
                                                 <span class="readingTime" title="{{ $post->estimated_reading_time ?? '0' }} min read">{{ $post->estimated_reading_time ?? '0' }} min read</span>
@@ -99,7 +104,12 @@
                                                     <div class="post-content">
                                                         <h5 class="entry-title mb-2"><a href="{{ url($latest_post_item->category->slug.'/'.$latest_post_item->slug) }}">{{$latest_post_item->name}}</a></h5>
                                                         <div class="entry-meta align-items-center">
-                                                            <a href="#">{{ $latest_post_item->user->name}}</a> in <a href="{{ url(Str::slug($latest_post_item->category->name))}}"> {{ $latest_post_item->category->name }}</a><br>
+                                                            @if(Auth::check())
+                                                            <a href="{{url('profile/'.$latest_post_item->user->id )}}">{{ $latest_post_item->user->name}}</a>
+                                                         @else
+                                                            <a href="{{ route('login') }}">Login to view profile</a>
+                                                         @endif 
+                                                             in <a href="{{ url(Str::slug($latest_post_item->category->name))}}"> {{ $latest_post_item->category->name }}</a><br>
                                                             <span>{{ $latest_post_item->created_at->format('M j, Y') }}</span>
                                                             <span class="middotDivider"></span>
                                                             <span class="readingTime" title="{{ $post->estimated_reading_time ?? '0' }} min read">{{ $post->estimated_reading_time ?? '0' }} min read</span>

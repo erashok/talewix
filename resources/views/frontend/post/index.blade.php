@@ -85,7 +85,12 @@
                                                     <div class="post-content">
                                                         <h5 class="entry-title mb-2"><a href="{{ url($latest_post_item->category->slug.'/'.$latest_post_item->slug) }}">{{$latest_post_item->name}}</a></h5>
                                                         <div class="entry-meta align-items-center">
-                                                            <a href="#">{{ $latest_post_item->user->name}}</a> in <a href="#">Police</a><br>
+                                                            @if(Auth::check())
+                                                            <a href="{{url('profile/'.$latest_post_item->user->id )}}">{{ $latest_post_item->user->name}}</a>
+                                                         @else
+                                                            <a href="{{ route('login') }}">Login to view profile</a>
+                                                         @endif 
+                                                            in <a href="#">Police</a><br>
                                                             <span>May 14</span>
                                                             <span class="middotDivider"></span>
                                                             <span class="readingTime" title="3 min read">3 min read</span>

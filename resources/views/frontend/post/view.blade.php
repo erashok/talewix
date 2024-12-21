@@ -15,7 +15,12 @@
                                 <a class="author-avatar" href="{{url('profile/'.$post->user->id )}}">
                                     <img src="{{ asset($post->user->pro_img ? 'upload/user_img/' . $post->user->pro_img : 'images/user-avatar.svg') }}" alt="Author Avatar">
                                 </a>
-                                <a href="{{url('profile/'.$post->user->id )}}">{{ $post->user->name }}</a><br>
+                                @if(Auth::check())
+                                    <a href="{{url('profile/'.$post->user->id )}}">{{ $post->user->name }}</a><br>
+                                 @else
+                                    <a href="{{ route('login') }}">Login to view profile</a>
+                                @endif 
+                                
                                 <span>{{ $post->created_at->format('M j, Y') }}</span>
                                 <span class="middotDivider"></span>
                                 {{-- <span class="readingTime" title="{{ $postitem->reading_time }}">{{ $postitem->reading_time }}</span> --}}
