@@ -46,10 +46,11 @@
                                                 </div>
                                                 <div class="entry-meta align-items-center">
                                                     @if(Auth::check())
-                                                    <a href="{{ route('profile.show', $postitem->user->id) }}">{{ $postitem->user->name }}</a>
-                                                    @else
-                                                        <a href="{{ route('login') }}">Login to view profile</a>
-                                                    @endif                                                
+                                                            <a href="{{url('profile/'.$postitem->user->id )}}">{{ $postitem->user->name }}</a><br>
+                                                        @else
+                                                            <a href="{{ route('login') }}">Login to view profile</a>
+                                                        @endif       
+                                                                                              
                                                         <br>
                                                     <span>{{ $postitem->created_at->format('M j, Y') }}</span>
                                                     <span class="middotDivider"></span>
@@ -85,10 +86,15 @@
                                                     <div class="post-content">
                                                         <h5 class="entry-title mb-2"><a href="{{ url($latest_post_item->category->slug.'/'.$latest_post_item->slug) }}">{{$latest_post_item->name}}</a></h5>
                                                         <div class="entry-meta align-items-center">
-                                                            <a href="#">{{ $latest_post_item->user->name}}</a> in <a href="#">Police</a><br>
-                                                            <span>May 14</span>
+                                                            @if(Auth::check())
+                                                            <a href="{{url('profile/'.$latest_post_item->user->id )}}">{{ $latest_post_item->user->name}}</a>
+                                                         @else
+                                                            <a href="{{ route('login') }}">Login to view profile</a>
+                                                         @endif 
+                                                            in <a href="{{ url(Str::slug($latest_post_item->category->name))}}"> {{ $latest_post_item->category->name }}</a><br>
+                                                            <span>{{ $latest_post_item->created_at->format('M j, Y') }}</span>
                                                             <span class="middotDivider"></span>
-                                                            <span class="readingTime" title="3 min read">3 min read</span>
+                                                            <span class="readingTime" title="{{ $latest_post_item->estimated_reading_time ?? '0' }} min read">{{ $latest_post_item->estimated_reading_time ?? '0' }} min read</span>
                                                         </div>
                                                     </div>
                                                 </li>
