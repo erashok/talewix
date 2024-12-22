@@ -3,6 +3,8 @@
 @section('meta_title', "$post->meta_title")
 @section('meta_description', "$post->meta_description")
 @section('meta_keyword', "$post->meta_keyword")
+@section('user_name', "$post->user_name")
+
 @section('content')
     
 <div class="container">

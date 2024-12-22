@@ -46,10 +46,11 @@
                                                 </div>
                                                 <div class="entry-meta align-items-center">
                                                     @if(Auth::check())
-                                                    <a href="{{ route('profile.show', $postitem->user->id) }}">{{ $postitem->user->name }}</a>
-                                                    @else
-                                                        <a href="{{ route('login') }}">Login to view profile</a>
-                                                    @endif                                                
+                                                            <a href="{{url('profile/'.$postitem->user->id )}}">{{ $postitem->user->name }}</a><br>
+                                                        @else
+                                                            <a href="{{ route('login') }}">Login to view profile</a>
+                                                        @endif       
+                                                                                              
                                                         <br>
                                                     <span>{{ $postitem->created_at->format('M j, Y') }}</span>
                                                     <span class="middotDivider"></span>

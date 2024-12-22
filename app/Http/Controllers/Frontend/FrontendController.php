@@ -98,6 +98,8 @@ class FrontendController extends Controller
     $post = new Post();
     $post->category_id = $request->category_id;
     $post->name = $request->name;
+    $post->meta_title = $request->name;
+    $post->meta_description = $request->short_description;
     $post->short_description = $request->short_description;
     $post->description = $request->description;
     $post->user_id = Auth::id(); 
