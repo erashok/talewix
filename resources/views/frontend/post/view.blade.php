@@ -74,14 +74,14 @@
                              @foreach ($latest_posts as $latestitem)
                                 <article class="col-md-4">
                                     <div class="mb-3 d-flex row">
-                                        <figure class="col-md-5"><a href="{{ url($latestitem->category->slug.'/'.$latestitem->slug) }}" target="_blank"><img src="{{ asset('upload/post/' . $post->thum_image) }}" alt="post-title"></a></figure>
+                                        <figure class="col-md-5"><a href="{{ url($latestitem->category->slug.'/'.$latestitem->slug) }}" target="_blank"><img src="{{ asset('upload/post/' . $latestitem->thum_image) }}" alt="post-title"></a></figure>
                                         <div class="entry-content col-md-7 pl-md-0">
                                             <h5 class="entry-title mb-3"><a href="{{ url($latestitem->category->slug.'/'.$latestitem->slug) }}" target="_blank">{{ $latestitem->name }}</a></h5>
                                             <div class="entry-meta align-items-center">
-                                                <a href="#">{{ $latestitem->user->name}}</a> in <a href="#">Programing</a><br>
-                                                <span>{{ $post->created_at->format('M j, Y') }}</span>
+                                                <a href=""{{url('profile/'.$latestitem->user->id )}}">{{ $latestitem->user->name}}</a> in <a href="{{ url(Str::slug($latestitem->category->name))}}"> {{ $latestitem->category->name }}</a><br>
+                                                <span>{{ $latestitem->created_at->format('M j, Y') }}</span>
                                                 <span class="middotDivider"></span>
-                                                <span class="readingTime" title="3 min read">6 min read</span>
+                                                <span class="readingTime" title="{{ $latestitem->estimated_reading_time ?? '0' }} min read">{{ $latestitem->estimated_reading_time ?? '0' }} min read</span>
                                             </div>
                                         </div>
                                     </div>

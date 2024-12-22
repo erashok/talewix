@@ -90,10 +90,10 @@
                                                          @else
                                                             <a href="{{ route('login') }}">Login to view profile</a>
                                                          @endif 
-                                                            in <a href="#">Police</a><br>
-                                                            <span>May 14</span>
+                                                            in <a href="{{ url(Str::slug($latest_post_item->category->name))}}"> {{ $latest_post_item->category->name }}</a><br>
+                                                            <span>{{ $latest_post_item->created_at->format('M j, Y') }}</span>
                                                             <span class="middotDivider"></span>
-                                                            <span class="readingTime" title="3 min read">3 min read</span>
+                                                            <span class="readingTime" title="{{ $latest_post_item->estimated_reading_time ?? '0' }} min read">{{ $latest_post_item->estimated_reading_time ?? '0' }} min read</span>
                                                         </div>
                                                     </div>
                                                 </li>

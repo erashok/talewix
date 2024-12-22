@@ -20,7 +20,7 @@
                                         <div class="align-self-center">
                                             <div class="capsSubtle mb-0">{{ $post->category->name }}</div>
                                             <h3 class="entry-title mb-2">
-                                                <a href="{{ url('@' . Str::slug($post->user_name) . '/' . $post->slug) }}">
+                                                <a href="{{ url($post->category->slug.'/'.$post->slug) }}">
                                                     {{ $post->name }}
                                                 </a>
                                             </h3>

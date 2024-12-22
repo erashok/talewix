@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('meta_title', "{$latest_posts->first()->meta_title}")
+@section('meta_description', "{$latest_posts->first()->meta_description}")
+@section('meta_keyword', "{$latest_posts->first()->meta_keyword}")
 
 @section('content')
 
@@ -27,11 +29,11 @@
                                                             <h5 class="entry-title mb-2"><a href="{{ url($latest_post_item->category->slug.'/'.$latest_post_item->slug) }}">{{$latest_post_item->name}}</a></h5>
                                                             <div class="entry-excerpt">
                                                                 <p>
-                                                                     {{ \Illuminate\Support\Str::words($latest_post_item->short_description, 6, '...') }}
+                                                                     {{ \Illuminate\Support\Str::words($latest_post_item->short_description, 8, '...') }}
                                                                 </p>
                                                             </div>
                                                             <div class="entry-meta align-items-center">
-                                                                <a href="{{url('profile/'.$latest_post_item->user->id )}}">{{ $latest_post_item->user->name}}</a> in <a href="#">Fashion</a><br>
+                                                                <a href="{{url('profile/'.$latest_post_item->user->id )}}">{{ $latest_post_item->user->name}}</a> in <a href="{{ url(Str::slug($latest_post_item->category->name))}}"> {{ $latest_post_item->category->name }}</a><br>
                                                                 <span>{{ $latest_post_item->created_at->format('M j, Y') }}</span>
                                                                 <span class="middotDivider"></span>
                                                                 <span class="readingTime" title="{{ $post->estimated_reading_time ?? '0' }} min read">{{ $post->estimated_reading_time ?? '0' }} min read</span>
