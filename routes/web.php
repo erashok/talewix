@@ -51,6 +51,10 @@ Route::get('new-story', [App\Http\Controllers\Frontend\FrontendController::class
 Route::get('search', [App\Http\Controllers\Frontend\FrontendController::class, 'search']);
 Route::get('profile', [App\Http\Controllers\Frontend\FrontendController::class, 'userprofile']);
 Route::get('about', [App\Http\Controllers\Frontend\FrontendController::class, 'about']);
+Route::get('help', [App\Http\Controllers\Frontend\FrontendController::class, 'help']);
+Route::get('contact', [App\Http\Controllers\Frontend\FrontendController::class, 'contact']);
+Route::get('privacy', [App\Http\Controllers\Frontend\FrontendController::class, 'privacy']);
+Route::get('terms', [App\Http\Controllers\Frontend\FrontendController::class, 'terms']);
 
 Route::get('/profile/{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'showProfile'])->name('profile.show');
 Route::get('plans', [App\Http\Controllers\Frontend\FrontendController::class, 'plans']);

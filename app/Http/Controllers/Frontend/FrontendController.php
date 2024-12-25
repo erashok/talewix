@@ -290,7 +290,7 @@ class FrontendController extends Controller
     }
 
     public function destroy($id)
-{
+        {
     $post = Post::findOrFail($id);
 
     if ($post->user_id !== Auth::id()) {
@@ -300,11 +300,27 @@ class FrontendController extends Controller
     // Delete the post
     $post->delete();
 
-    // Redirect with success message
-    return redirect()->back()->with('success', 'Post deleted successfully.');
-}
+        // Redirect with success message
+        return redirect()->back()->with('success', 'Post deleted successfully.');
+    }
     public function about()
     {
         return view('frontend.page.about');
+    }
+    public function help()
+    {
+        return view('frontend.page.help');
+    }
+    public function contact()
+    {
+        return view('frontend.page.contact');
+    }
+    public function privacy()
+    {
+        return view('frontend.page.privacy');
+    }
+    public function terms()
+    {
+        return view('frontend.page.terms');
     }
 }
