@@ -126,7 +126,7 @@
     font-size: 22px;
 }
 .hero-content-wrap h2 {
-    font-size: 36px;
+    font-size: 30px;
     line-height: 1.2em;
     font-weight: bold;
     color: #0c0c0d;
