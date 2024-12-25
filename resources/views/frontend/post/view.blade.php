@@ -80,7 +80,12 @@
                                         <div class="entry-content col-md-7 pl-md-0">
                                             <h5 class="entry-title mb-3"><a href="{{ url($latestitem->category->slug.'/'.$latestitem->slug) }}" target="_blank">{{ $latestitem->name }}</a></h5>
                                             <div class="entry-meta align-items-center">
-                                                <a href=""{{url('profile/'.$latestitem->user->id )}}">{{ $latestitem->user->name}}</a> in <a href="{{ url(Str::slug($latestitem->category->name))}}"> {{ $latestitem->category->name }}</a><br>
+                                                @if(Auth::check())
+                                                                <a href="{{url('profile/'.$latestitem->user->id )}}">{{ $latestitem->user->name}}</a>
+                                                                @else
+                                                                    <a href="{{ route('login') }}">Login to view profile</a>
+                                                                @endif  
+                                                in <a href="{{ url(Str::slug($latestitem->category->name))}}"> {{ $latestitem->category->name }}</a><br>
                                                 <span>{{ $latestitem->created_at->format('M j, Y') }}</span>
                                                 <span class="middotDivider"></span>
                                                 <span class="readingTime" title="{{ $latestitem->estimated_reading_time ?? '0' }} min read">{{ $latestitem->estimated_reading_time ?? '0' }} min read</span>

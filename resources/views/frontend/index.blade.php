@@ -33,7 +33,12 @@
                                                                 </p>
                                                             </div>
                                                             <div class="entry-meta align-items-center">
-                                                                <a href="{{url('profile/'.$latest_post_item->user->id )}}">{{ $latest_post_item->user->name}}</a> in <a href="{{ url(Str::slug($latest_post_item->category->name))}}"> {{ $latest_post_item->category->name }}</a><br>
+                                                                @if(Auth::check())
+                                                                <a href="{{url('profile/'.$latest_post_item->user->id )}}">{{ $latest_post_item->user->name}}</a>
+                                                                @else
+                                                                    <a href="{{ route('login') }}">Login to view profile</a>
+                                                                @endif  
+                                                                in <a href="{{ url(Str::slug($latest_post_item->category->name))}}"> {{ $latest_post_item->category->name }}</a><br>
                                                                 <span>{{ $latest_post_item->created_at->format('M j, Y') }}</span>
                                                                 <span class="middotDivider"></span>
                                                                 <span class="readingTime" title="{{ $post->estimated_reading_time ?? '0' }} min read">{{ $post->estimated_reading_time ?? '0' }} min read</span>
@@ -137,11 +142,11 @@
                                     </div>
                                 </div>
                                 <ul class="inline copyright">
-                                    <li class="list-inline-item"><a href="#">Help</a></li>
+                                    <li class="list-inline-item"><a href="{{ url('/help') }}">Help</a></li>
                                     <li class="list-inline-item"><a href="{{ url('/about') }}">About</a></li>
-                                    <li class="list-inline-item"><a href="#">Contact</a></li>
-                                    <li class="list-inline-item"><a href="#">Privacy</a></li>
-                                    <li class="list-inline-item"><a href="#">Terms</a></li>
+                                    <li class="list-inline-item"><a href="{{ url('/contact') }}">Contact</a></li>
+                                    <li class="list-inline-item"><a href="{{ url('/privacy') }}">Privacy</a></li>
+                                    <li class="list-inline-item"><a href="{{ url('/terms') }}">Terms</a></li>
                                 </ul>
                             </div> <!--col-md-4-->
                         </div>
