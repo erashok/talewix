@@ -7,11 +7,11 @@
                         </div>
                         <div class="col-md-8">
                             <ul class="inline copyright text-md-right text-sm-center">
-                                <li class="list-inline-item"><a href="#">Help</a></li>
+                                <li class="list-inline-item"><a href="{{ url('/help') }}" target="_blank">Help</a></li>
                                 <li class="list-inline-item"><a href="{{ url('/about') }}" target="_blank">About</a></li>
-                                <li class="list-inline-item"><a href="#">Contact</a></li>
-                                <li class="list-inline-item"><a href="#">Privacy</a></li>
-                                <li class="list-inline-item"><a href="#">Terms</a></li>
+                                <li class="list-inline-item"><a href="{{ url('/contact') }}" target="_blank">Contact</a></li>
+                                <li class="list-inline-item"><a href="{{ url('/privacy') }}" target="_blank">Privacy</a></li>
+                                <li class="list-inline-item"><a href="{{ url('/terms') }}" target="_blank">Terms</a></li>
                             </ul>
                         </div>
                     </div>
