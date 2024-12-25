@@ -126,7 +126,7 @@
                                                 <h5 class="entry-title mb-2"><a href="{{ url($latest_post_item->category->slug.'/'.$latest_post_item->slug) }}">{{$latest_post_item->name}}</a></h5>
                                                 <div class="entry-meta align-items-center">
                                                     @if(Auth::check())
-                                                            <a href="{{url('profile/'.$latest_post_item->user->id )}}">{{ $latest_post_item->user->name }}</a><br>
+                                                            <a href="{{url('profile/'.$latest_post_item->user->id )}}">{{ $latest_post_item->user->name }}</a>
                                                         @else
                                                             <a href="{{ route('login') }}">Login to view profile</a>
                                                         @endif  in 

@@ -34,11 +34,13 @@ class FrontendController extends Controller
     {
         $category = category::where('slug', $category_slug)
             ->where('status', '1')
+            ->orderBy('created_at', 'DESC')
             ->first();
 
         if ($category) {
             $post = Post::where('category_id', $category->id)
                 ->where('status', '1')
+                ->orderBy('created_at', 'DESC')
                 ->get();
             foreach ($post as $reaspost) {
                 $reaspost->reading_time = $reaspost->reading_time; // Access the attribute
