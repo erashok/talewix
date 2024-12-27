@@ -30,9 +30,11 @@
                             
                         </div>
                     </div> <!--end single header-->
-                    <figure class="image zoom mb-5 text-center">
-                        <img src="{{ asset('upload/post/' . $post->thum_image) }}" alt="{{ $post->name }}"  />
-                    </figure>  <!--figure-->
+                        @if (!empty($post->thum_image) && file_exists(public_path('upload/post/' . $post->thum_image)))
+                            <figure class="image zoom mb-5 text-center">
+                                <img src="{{ asset('upload/post/' . $post->thum_image) }}" alt="{{ $post->name }}" />
+                            </figure>
+                        @endif
                     <article class="entry-wraper mb-5">
                         <div class="entry-left-col">
                             <div class="social-sticky">
@@ -76,7 +78,13 @@
                              @foreach ($latest_posts as $latestitem)
                                 <article class="col-md-4">
                                     <div class="mb-3 d-flex row">
-                                        <figure class="col-md-5"><a href="{{ url($latestitem->category->slug.'/'.$latestitem->slug) }}" target="_blank"><img src="{{ asset('upload/post/' . $latestitem->thum_image) }}" alt="post-title"></a></figure>
+                                        @if (!empty($latestitem->thum_image) && file_exists(public_path('upload/post/' . $latestitem->thum_image)))
+                                            <figure class="col-md-5">
+                                                <a href="{{ url($latestitem->category->slug . '/' . $latestitem->slug) }}" target="_blank">
+                                                    <img src="{{ asset('upload/post/' . $latestitem->thum_image) }}" alt="post-title">
+                                                </a>
+                                            </figure>
+                                        @endif
                                         <div class="entry-content col-md-7 pl-md-0">
                                             <h5 class="entry-title mb-3"><a href="{{ url($latestitem->category->slug.'/'.$latestitem->slug) }}" target="_blank">{{ $latestitem->name }}</a></h5>
                                             <div class="entry-meta align-items-center">

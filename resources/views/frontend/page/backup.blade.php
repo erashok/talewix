@@ -268,3 +268,10 @@
 </style>
 
 @endsection
+
+DB_DATABASE=u372123786_talewix
+DB_USERNAME=u372123786_talewix
+DB_PASSWORD=U^~mTD|7u
+
+
+Ashok@Verma@#1994#;

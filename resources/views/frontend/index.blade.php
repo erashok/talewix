@@ -19,12 +19,13 @@
                                         @foreach ($posts as $latest_post_item)
                                                  <article class="col-md-4">
                                                     <div class="mb-3 d-flex row">
-                                                        <figure class="col-md-5">
-                                                            <a href="{{ url($latest_post_item->category->slug . '/' . $latest_post_item->slug) }}">
-                                                                <img src="{{ asset('upload/post/' . $latest_post_item->thum_image) }}" alt="post-title" class="zoom">
-                                                            </a>
-                                                        </figure>
-
+                                                        @if (!empty($latest_post_item->thum_image) && file_exists(public_path('upload/post/' . $latest_post_item->thum_image)))
+                                                            <figure class="col-md-5">
+                                                                <a href="{{ url($latest_post_item->category->slug . '/' . $latest_post_item->slug) }}">
+                                                                    <img src="{{ asset('upload/post/' . $latest_post_item->thum_image) }}" alt="post-title" class="zoom">
+                                                                </a>
+                                                            </figure>
+                                                        @endif
                                                         <div class="entry-content col-md-7 pl-md-0">
                                                             <h5 class="entry-title mb-2"><a href="{{ url($latest_post_item->category->slug.'/'.$latest_post_item->slug) }}">{{$latest_post_item->name}}</a></h5>
                                                             <div class="entry-excerpt">
@@ -141,13 +142,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <ul class="inline copyright">
+                                <!-- <ul class="inline copyright">
                                     <li class="list-inline-item"><a href="{{ url('/help') }}">Help</a></li>
                                     <li class="list-inline-item"><a href="{{ url('/about') }}">About</a></li>
                                     <li class="list-inline-item"><a href="{{ url('/contact') }}">Contact</a></li>
                                     <li class="list-inline-item"><a href="{{ url('/privacy') }}">Privacy</a></li>
                                     <li class="list-inline-item"><a href="{{ url('/terms') }}">Terms</a></li>
-                                </ul>
+                                </ul> -->
                             </div> <!--col-md-4-->
                         </div>
                     </div> <!--content-widget-->
