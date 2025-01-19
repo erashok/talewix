@@ -27,6 +27,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('images/favicon/favicon-96x96.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon/favicon-16x16.png') }}">
+    <meta http-equiv="robots" content="Index, All, Follow" />
+	<meta name="viewport" content="width=device-width">
+	<meta name="robots" content="index, follow" />
+	<meta name="google-site-verification" content="CXYuUTdT_so2vtQEJpR16l8zHFctPXJKj7iGb1zUbcU" />
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{ asset('images/favicon/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#ffffff">
